@@ -1,0 +1,33 @@
+{
+  "name": "llamabot",
+  "version": "1.0.0",
+  "description": "Llamabot is a awesome Discord bot with tons of commands",
+  "main": "src/index.js",
+  "dependencies": {
+    "discord-anti-spam": "^2.0.0",
+    "discord.js": "^11.4.2",
+    "discordjs-prompter": "^2.0.3",
+    "dotenv": "^8.2.0",
+    "enmap": "^4.8.1",
+    "ms": "^2.1.1",
+    "node": "^13.10.1",
+    "node-gyp": "^3.8.0",
+    "opusscript": "^0.0.6",
+    "python": "^0.0.4",
+    "random-puppy": "^1.1.0",
+    "rebuild": "^0.1.2",
+    "reddit-dl": "^1.0.4",
+    "snekfetch": "^4.0.4",
+    "sqlite3": "^4.0.6",
+    "superagent": "^5.0.2",
+    "urban-dictionary": "^2.2.1",
+    "yt-search": "^1.1.2",
+    "ytdl": "^1.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "YourDailyLlama",
+  "license": "ISC"
+}

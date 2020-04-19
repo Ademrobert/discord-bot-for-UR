@@ -1,0 +1,43 @@
+exports.run = (client, message, args) => {
+  console.log(`${message.author.tag} used the !help command.`)
+  message.channel.send({
+    embed: {
+      color: 000000,
+      author: {
+        name: client.user.username,
+        icon_url: client.user.avatarURL
+      },
+      title: "Help",
+      description: "These are all the help commands",
+      fields: [{
+        name: "_**!helpmod**_",
+        value: "Help for commands only executable by mods or administrators."
+      },
+      {
+        name: "_**!helpfun**_",
+        value: "Help for fun commands executable by anyone."
+      },
+      {
+        name: "_**!helpinfo**_",
+        value: "Help for informational commands executable by anyone."
+      },
+      {
+        name: "_**?online**_",
+        value: "Help for informational commands executable by anyone."
+      },
+      {
+        name: "_**!helpmusic**_",
+        value: "Help for information about music commands."
+      },
+      {
+        name: "Suggestions",
+        value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
+      }
+      ],
+      timestamp: new Date(),
+      footer: {
+        icon_url: client.user.avatarURL,
+      }
+    }
+  })
+};
