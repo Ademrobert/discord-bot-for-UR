@@ -159,6 +159,12 @@ client.on('message', (message) => {
   }
 });
 
+client.on('message', (message) => {
+  if (message.content === '!skepimode') {
+    const embed = new RichEmbed().setTitle('Is bot online?').setColor(15844367).setDescription("Sekpimode is a Legendary pvper in all of minecraft history and he is unstoppable, actually never mind, he's trash");
+    message.channel.send(embed);
+  }
+});
 
 client.on('message', (message) => {
   if (message.content === '!whyboost') {
