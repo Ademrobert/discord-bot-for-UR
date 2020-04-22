@@ -27,6 +27,7 @@ module.exports = {
         await list(message.guild);
         break;
     }
+    message.delete();
   },
 }
 
