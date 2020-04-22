@@ -1,19 +1,28 @@
+var Filter = require('bad-words'),
+    filter = new Filter({ placeHolder: '\\*'});
+
 module.exports = (client, message) => {
-    if (message.author.bot) return;
-  
-   
-    if (message.content.indexOf(client.config.prefix) !== 0) return;
-  
+  if (message.author.bot) return;
 
-    const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
+  if (filter.isProfane(message.content)) {
+    message.content = filter.clean(message.content);
+    message.channel.send(`${message.member.displayName}: ${message.content}`).then(() => message.delete());
+    // message.member.send("Please dont say bad words :). we are good people. This time i filtered your message, its just a warn.");
+    return;
+  }
   
+  if (message.content.indexOf(client.config.prefix) !== 0) return;
 
-    const cmd = client.commands.get(command);
+
+  const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+
+
+  const cmd = client.commands.get(command);
+
   
-   
-    if (!cmd) return;
+  if (!cmd) return;
+
   
-    
-    cmd.run(client, message, args);
-  };
+  cmd.run(client, message, args);
+};
