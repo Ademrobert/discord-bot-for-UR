@@ -7,8 +7,8 @@ module.exports = {
     description: "Reports a member",
     usage: "<mention, id>",
     run: async (client, message, args) => {
-        message.reply(`Successfully banned ${user.tag}!`);
         if (message.deletable) message.delete();
+         message.reply(`Successfully banned ${user.tag}!`);
 
         let rMember = message.mentions.members.first() || message.guild.members.get(args[0]);
 
