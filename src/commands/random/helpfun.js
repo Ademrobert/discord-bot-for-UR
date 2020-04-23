@@ -10,63 +10,63 @@ exports.run = (client, message, args) => {
       title: "Fun Help",
       description: "These are all the fun commands.",
       fields: [{
-        name: "_**!helpcat**_",
+        name: "_**!cat**_",
         value: "Gets a picture of a cat."
       },
       {
-        name: "_**!helpdog**_",
+        name: "_**!dog**_",
         value: "Gets a picture of a dog."
       },
       {
-        name: "_**!helpparrot**_",
+        name: "_**!parrot**_",
         value: "Gets a picture of a parrot."
       },
       {
-        name: "_**!helpcatfact**_",
+        name: "_**!catfact**_",
         value: "Gets a fact of cats."
       },
       {
-        name: "_**!helpdogfact**_",
+        name: "_**!dogfact**_",
         value: "Gets a fact of dogs."
       },
       {
-        name: "_**!helpcoinflip**_",
+        name: "_**!coinflip**_",
         value: "Flips a coin for you."
       },
       {
-        name: "_**!helplizard**_",
+        name: "_**!lizard**_",
         value: "Gets a picture of a lizard."
       },
       {
-        name: "_**!helpmeme**_",
+        name: "_**!meme**_",
         value: "Gets a meme from subreddit /memes."
       },
       {
-        name: "_**!helpdankmeme**_",
+        name: "_**!dankmeme**_",
         value: "Gets a meme from subreddit /dankmemes."
       },
       {
-        name: "_**!helphistorymeme**_",
+        name: "_**!historymeme**_",
         value: "Gets a meme from subreddit /historymemes."
       },
       {
-        name: "_**!helphug**_",
+        name: "_**!hug**_",
         value: "Hug somebody."
       },
       {
-        name: "_**!helpkiss**_",
+        name: "_**!kiss**_",
         value: "Kiss somebody."
       },
       {
-        name: "_**!helpslap**_",
+        name: "_**!slap**_",
         value: "Slap somebody."
       },
       {
-        name: "Suggestions",
-        value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
+        name: "_**!panda**_",
+        value: "Shows a picture of a panda."
       },
       {
-        name: "_**!helppanda**_",
+        name: "Suggestions",
         value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
       }
       ],

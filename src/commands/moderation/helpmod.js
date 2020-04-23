@@ -41,6 +41,10 @@ exports.run = (client, message, args) => {
             value: "Warns the user mentioned."
           },
           {
+            name: "_**!report (User)**_",
+            value: "Report's user."
+          },
+          {
             name: "Suggestions",
             value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
           }

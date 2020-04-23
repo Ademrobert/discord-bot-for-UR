@@ -10,11 +10,11 @@ exports.run = (client, message, args) => {
       title: "Info Help",
       description: "These are all the info commands.",
       fields: [{
-        name: "_**!helpping**_",
+        name: "_**!ping**_",
         value: "Gets the bot's ping in ms."
       },
       {
-        name: "_**!helpserver**_",
+        name: "_**!server**_",
         value: "Shows the server's information."
       },
       {
@@ -22,11 +22,11 @@ exports.run = (client, message, args) => {
         value: "Shows the creators info."
       },
       {
-        name: "_**!helpuserinfo (user)**_",
+        name: "_**!userinfo (user)**_",
         value: "Shows your information."
       },
       {
-        name: "_**!helproleinfo (role)**_",
+        name: "_**!roleinfo (role)**_",
         value: "Shows the information for the mentioned role."
       },
       {
