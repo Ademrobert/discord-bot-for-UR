@@ -94,7 +94,7 @@ client.on('message', (message) => {
         console.log('message not from guild');
         return;
       }
-      if (message.member.roles.some(r => r.name === "Admin") || true) {
+      if (message.member.roles.some(r => r.name === "Admin")) {
         const channel = message.guild.channels.find((c) => c.name === args.join(' '));
         if (channel) {
           const existing = db.get('counters')
