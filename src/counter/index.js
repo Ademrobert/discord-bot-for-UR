@@ -4,7 +4,7 @@ let guildsInterval = {};
 module.exports = (client) => {
   console.log('Set up counter service');
   return {
-    counterInterval: (guildId, channelId) => {
+    counterInterval: (guildId, channelId, type) => {
       console.log('Creating interval for ', guildId, channelId);
       const guild = client.guilds.get(guildId);
       if (!guild) {
@@ -22,7 +22,14 @@ module.exports = (client) => {
       guildsInterval[guildId] = setInterval(function () {
          var memberCount = guild.members.filter(member => !member.user.bot).size;
          var botCount = guild.members.filter(member => member.user.bot).size;
-         memberCountChannel.setName(`Members: ${memberCount} Bots: ${botCount}`);
+         switch(type) {
+            case 'members':
+              memberCountChannel.setName(`Members: ${memberCount}`);
+              break;
+            case 'bots':
+              memberCountChannel.setName(`Bots: ${botCount}`);
+              break;
+         }
       }, 1000);
     }
   };
