@@ -8,7 +8,6 @@ const queue = new Map();
 module.exports = {
   handle: async (cmd, args, message, client) => {
     const text = args.join(' ');
-    console.log('handle musing msg', cmd, '=>', text)
     const serverQueue = queue.get(message.guild.id);
     switch(cmd) {
       case '!play':
@@ -24,7 +23,7 @@ module.exports = {
         await search(text, client, message, serverQueue);
         break;
       case '!playqueue':
-        await list(message.guild);
+        await list(message, message.guild);
         break;
     }
     message.delete();
@@ -147,13 +146,12 @@ function play(guild, song) {
     });
   serverQueue.dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   
-  console.log('SONG=>', song);
   serverQueue.textChannel.send({
     embed: getEmbed(song, true),
   });
 }
 
-function list(guild) {
+function list(message, guild) {
   const serverQueue = queue.get(guild.id);
   if (serverQueue && serverQueue.songs.length > 0) {
     const embed = {
@@ -167,7 +165,7 @@ function list(guild) {
       }),
       timestamp: new Date(),
     };
-    serverQueue.textChannel.send({
+    message.reply({
       embed
     });
   }
