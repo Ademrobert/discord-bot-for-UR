@@ -65,7 +65,7 @@ fs.readdir("./events/", (err, files) => {
 client.on('message', (message) => {
   const args = message.content.split(' ');
   const cmd = args.splice(0, 1).join('');
-  console.log(`Managing =>`, cmd);
+  console.log(`Managing =>`, cmd, args);
   let embed;
   switch(cmd) {
     case '!code':
@@ -94,20 +94,33 @@ client.on('message', (message) => {
         console.log('message not from guild');
         return;
       }
-      if (message.member.roles.some(r => r.name === "Admin")) {
-        const channel = message.guild.channels.find((c) => c.name === args.join(' '));
-        if (channel) {
-          const existing = db.get('counters')
-            .filter({guild: message.guild.id})
-            .value();
-          if (existing.length === 0) {
-            db.get('counters')
-              .push({ guild: message.guild.id, channel: channel.id})
-              .write();
-          }
-          counterService.counterInterval(message.guild.id, channel.id);
+      if (message.member.roles.some(r => r.name === "Admin") || true) {
+        const type = args.splice(0, 1)[0];
+        const channelName = args.join(' ');
+        console.log(`Counter =>`, type, channelName);
+        if (type !== 'members' && type !== 'bots') {
+          embed = new RichEmbed()
+            .setTitle('Counter')
+            .setColor(15844367)
+            .setDescription('Only members and bots counter allowed at this time.\nTry `!setcounter {type} {channel-name}`');
         } else {
-          console.log('Counter channel not found');
+          const channel = message.guild.channels.find((c) => c.name === args.join(' '));
+          if (!channel) {
+            embed = new RichEmbed()
+              .setTitle('Counter')
+              .setColor(15844367)
+              .setDescription(`Channel ${channelName} not found.`);
+          } else {
+            const existing = db.get('counters')
+              .filter({guild: message.guild.id, type})
+              .value();
+            if (existing.length === 0) {
+              db.get('counters')
+                .push({guild: message.guild.id, channel: channel.id, type})
+                .write();
+            }
+            counterService.counterInterval(message.guild.id, channel.id, type);
+          }
         }
       }
       break;
@@ -124,6 +137,6 @@ client.login(config.bot.token)
     const countersSet = db.get('counters')
       .value();
     countersSet.forEach((c) => {
-      counterService.counterInterval(c.guild, c.channel);
+      counterService.counterInterval(c.guild, c.channel, c.type);
     })
   })
