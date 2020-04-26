@@ -4,11 +4,20 @@ const client = new Discord.Client();
 const config = require("./config");
 const fs = require("fs");
 const Enmap = require("enmap");
+const database = require('./database');
+const db = database.getConnection({
+  filename: config.database.file.name,
+});
+db.defaults({ counters: [] })
+  .write();
+
 client.config = {
 	token: config.bot.token,
 	prefix: config.bot.prefix,
 	NOTALLOWED_COMMANDS: config.bot.notAllowedCommands,
 };
+
+const counterService = require('./counter')(client);
 
 // // change working directory into server working directory!
 // try {
@@ -41,94 +50,6 @@ cmdDirs.forEach((dir) => {
   });
 })
 
-// fs.readdir("./commands/info/", (err, files) => {
-//   if (err) return console.error(err);
-//   files.forEach(file => {
-//     if (!file.endsWith(".js")) return;
-//     let props = require(`./commands/info/${file}`);
-//     let commandName = file.split(".")[0];
-//     console.log(`Attempting to load info directory ${commandName}`);
-//     client.commands.set(commandName, props);
-//   });
-// });
-// fs.readdir("./commands/moderation/", (err, files) => {
-//   if (err) return console.error(err);
-//   files.forEach(file => {
-//     if (!file.endsWith(".js")) return;
-//     let props = require(`./commands/moderation/${file}`);
-//     let commandName = file.split(".")[0];
-//     console.log(`Attempting to load moderation directory ${commandName}`);
-//     client.commands.set(commandName, props);
-//   });
-// });
-// fs.readdir("./commands/random/", (err, files) => {
-//   if (err) return console.error(err);
-//   files.forEach(file => {
-//     if (!file.endsWith(".js")) return;
-//     let props = require(`./commands/random/${file}`);
-//     let commandName = file.split(".")[0];
-//     console.log(`Attempting to load random directory ${commandName}`);
-//     client.commands.set(commandName, props);
-//   });
-// });
-// fs.readdir("./commands/memes/", (err, files) => {
-//   if (err) return console.error(err);
-//   files.forEach(file => {
-//     if (!file.endsWith(".js")) return;
-//     let props = require(`./commands/memes/${file}`);
-//     let commandName = file.split(".")[0];
-//     console.log(`Attempting to load memes directory ${commandName}`);
-//     client.commands.set(commandName, props);
-//   });
-// });
-// fs.readdir("./commands/animals/", (err, files) => {
-//   if (err) return console.error(err);
-//   files.forEach(file => {
-//     if (!file.endsWith(".js")) return;
-//     let props = require(`./commands/animals/${file}`);
-//     let commandName = file.split(".")[0];
-//     console.log(`Attempting to load animals directory ${commandName}`);
-//     client.commands.set(commandName, props);
-//   });
-// });
-
-// fs.readdir("./commands/music/", (err, files) => {
-//   if (err) return console.error(err);
-//   files.forEach(file => {
-//     if (!file.endsWith(".js")) return;
-//     let props = require(`./commands/animals/${file}`);
-//     let commandName = file.split(".")[0];
-//     console.log(`Attempting to load animals directory ${commandName}`);
-//     client.commands.set(commandName, props);
-//   });
-// });
-
-// fs.readdir("./commands/", (err, files) => {
-//   if (err) return console.error(err);
-//   files.forEach(file => {
-//     if (!file.endsWith(".js")) return;
-//     let props = require(`./commands/${file}`);
-//     let commandName = file.split(".")[0];
-//     console.log(`Attempting to load ${commandName}`);
-//     client.commands.set(commandName, props);
-//   });
-// });
-
-
-/*
-fs.readdir("./commands/special/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/special/${file}`);
-    let commandName = file.split(".")[0];
-    console.log(`Attempting to load ${commandName}`);
-    client.commands.set(commandName, props);
-  });
-});
-*/
-
-
 
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error(err);
@@ -140,123 +61,69 @@ fs.readdir("./events/", (err, files) => {
   });
 });
 
-
 //custom command
-
-console.log("hey");
-
 client.on('message', (message) => {
-  if (message.content === '!code') {
-    const embed = new RichEmbed().setTitle('Use Code').setColor(15844367).setDescription('Use Our Creator Code is: "UnstableRengades" in the Fortnite item shop :)');
+  const args = message.content.split(' ');
+  const cmd = args.splice(0, 1).join('');
+  console.log(`Managing =>`, cmd);
+  let embed;
+  switch(cmd) {
+    case '!code':
+      embed = new RichEmbed().setTitle('Use Code').setColor(15844367).setDescription('Use Our Creator Code is: "UnstableRengades" in the Fortnite item shop :)');
+      break;
+    case '?online':
+      embed = new RichEmbed().setTitle('Is bot online?').setColor(15844367).setDescription('Bot is online Bot is online from 9:00 Am (UTC+2) to 23:00 Pm (UTC+2)');
+      break;
+    case '!skepimode':
+      embed = new RichEmbed().setTitle('Skepimode').setColor(15844367).setDescription("Sekpimode is a Legendary pvper in all of minecraft history and he is unstoppable, actually never mind, he's trash");
+      break;
+    case '!whyboost':
+      embed = new RichEmbed()
+        .setTitle('Why Boost')
+        .setColor(15844367)
+        .setDescription('If you Boost Unstable Rengades you will get a Boost role and you can send /tts messages you can post images in general you can stream in 1080p in Voice chats and you can Dm somebody from the UR| Developer Team and they will make a command for you only if you have Nitro role we are gonna add more perks for the nitro Boost role New perks coming Soon!');
+      break;
+    case '!boost':
+      embed = new RichEmbed()
+        .setTitle('Nitro Boosts')
+        .setColor(15844367)
+        .setDescription(':dash:Remember That If You Have Discord Nitro To Boost Our Server:dash:   :fire:If You Boost Our Server It Will Give A Better Experience:fire:');
+      break;
+    case '!setcounter':
+      if (!message.guild) {
+        console.log('message not from guild');
+        return;
+      }
+      if (message.member.roles.some(r => r.name === "Admin") || true) {
+        const channel = message.guild.channels.find((c) => c.name === args.join(' '));
+        if (channel) {
+          const existing = db.get('counters')
+            .filter({guild: message.guild.id})
+            .value();
+          if (existing.length === 0) {
+            db.get('counters')
+              .push({ guild: message.guild.id, channel: channel.id})
+              .write();
+          }
+          counterService.counterInterval(message.guild.id, channel.id);
+        } else {
+          console.log('Counter channel not found');
+        }
+      }
+      break;
+  }
+  if (embed) {
     message.channel.send(embed);
+    message.delete();
   }
 });
-
-client.on('message', (message) => {
-  if (message.content === '?online') {
-    const embed = new RichEmbed().setTitle('Is bot online?').setColor(15844367).setDescription('Bot is online Bot is online from 9:00 Am (UTC+2) to 23:00 Pm (UTC+2)');
-    message.channel.send(embed);
-  }
-});
-
-client.on('message', (message) => {
-  if (message.content === '!skepimode') {
-    const embed = new RichEmbed().setTitle('Skepimode').setColor(15844367).setDescription("Sekpimode is a Legendary pvper in all of minecraft history and he is unstoppable, actually never mind, he's trash");
-    message.channel.send(embed);
-  }
-});
-
-client.on('message', (message) => {
-  if (message.content === '!whyboost') {
-    const embed = new RichEmbed()
-      .setTitle('Why Boost')
-      .setColor(15844367)
-      .setDescription('If you Boost Unstable Rengades you will get a Boost role and you can send /tts messages you can post images in general you can stream in 1080p in Voice chats and you can Dm somebody from the UR| Developer Team and they will make a command for you only if you have Nitro role we are gonna add more perks for the nitro Boost role New perks coming Soon!');
-    message.channel.send(embed);
-  }
-});
-
-client.on('message', (message) => {
-  if (message.content === '!boost') {
-    const embed = new RichEmbed()
-      .setTitle('Nitro Boosts')
-      .setColor(15844367)
-      .setDescription(':dash:Remember That If You Have Discord Nitro To Boost Our Server:dash:   :fire:If You Boost Our Server It Will Give A Better Experience:fire:');
-    message.channel.send(embed);
-  }
-});
-
-
 
 client.commands = new Enmap();
-
-
-
-
-
-
-//discord anti spam
-/*antispam(client, {
-     warnBuffer: 10, // Maximum ammount of messages allowed to send in the interval time before getting warned.
-     maxBuffer: 60, // Maximum amount of messages allowed to send in the interval time before getting banned.
-     interval: 2000, // Amount of time in ms users can send the maxim amount of messages(maxBuffer) before getting banned.
-     warningMessage: "please stop spamming!", // Message users receive when warned. (message starts with '@User, ' so you only need to input continue of it.)
-     banMessage: "has been hit by ban hammer for spamming!", // Message sent in chat when user is banned. (message starts with '@User, ' so you only need to input continue of it.)
-     maxDuplicatesWarning: 7,// Maximum amount of duplicate messages a user can send in a timespan before getting warned.
-     maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned.
-     deleteMessagesAfterBanForPastDays: 7, // Deletes the message history of the banned user in x days.
-     exemptRoles: ["Moderator"], // Name of roles (case sensitive) that are exempt from spam filter.
-     exemptUsers: ["Todo#2120"] // The Discord tags of the users (e.g: MrAugu#9016) (case sensitive) that are exempt from spam filter.
-   });
-
-// Rest of your code
-
-client.on('message', msg => {
-client.emit('checkMessage', msg); // This runs the filter on any message bot receives in any guilds.
-
-// Rest of your code
-});*/
-
-
-
-
-
-
-
-//XP system
-/*
-client.on("message", message => {
-let xp = require("./xp.json");
-let xpAdd = Math.floor(Math.random() * 2) + 6;
-
-
-if(!xp[message.author.id]){
-xp[message.author.id] = {
-    xp: 0,
-    level: 1,
-};
-}
-
-
-let curxp = xp[message.author.id].xp;
-let curllvl = xp[message.author.id].level;
-let nxtLvl = xp[message.author.id].level * 100;
-xp[message.author.id].xp = curxp + xpAdd;
-if(nxtLvl <= xp[message.author.id].xp){
-xp[message.author.id].level = curllvl + 1;
-let lvlup = new Discord.RichEmbed()
-.setAuthor(message.author.username)
-.setTitle(`${message.author.username} Leveled up!`)
-.setColor(000000)
-.addField("New level!", curllvl + 1);
-
-message.channel.send(lvlup);
-}
-fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
-if(err) console.log(err)
-})
-}); */
-
-client.login(config.bot.token);
-
-// start the bot by runing = Npm start
+client.login(config.bot.token)
+  .then(() => {
+    const countersSet = db.get('counters')
+      .value();
+    countersSet.forEach((c) => {
+      counterService.counterInterval(c.guild, c.channel);
+    })
+  })
