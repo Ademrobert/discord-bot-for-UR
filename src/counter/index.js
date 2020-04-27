@@ -25,22 +25,22 @@ module.exports = (client) => {
             lastUpdate: new Date(0),
           };
         }
-        var diffMs = (fetchedGuild[guildId].lastUpdate - new Date())
+        var diffMs = (new Date() - fetchedGuild[guildId].lastUpdate)
         if (diffMs > 15000) {
           guild.fetchMembers().then((updatedGuild) => {
             fetchedGuild[guildId] = updatedGuild;
             fetchedGuild[guildId].lastUpdate = new Date();
-            updateChannel(updatedGuild, memberCountChannel);
+            updateChannel(updatedGuild, memberCountChannel, type);
           })
         } else {
-          updateChannel(fetchedGuild[guildId], memberCountChannel);
+          updateChannel(fetchedGuild[guildId], memberCountChannel, type);
         }
       }, 5000);
     }
   };
 }
 
-function updateChannel(guild, channel) {
+function updateChannel(guild, channel, type) {
   var memberCount = guild.memberCount;
   var botCount = guild.members.filter(member => member.user.bot).size;
   switch(type) {
