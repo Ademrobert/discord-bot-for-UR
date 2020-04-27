@@ -95,16 +95,16 @@ client.on('message', (message) => {
         return;
       }
       if (!message.member.roles.some(r => r.name === "Admin")) {
-        //return message.reply('only Admin role members can set this up');
+        return message.reply('only Admin role members can set this up');
       }
       const type = args.splice(0, 1)[0];
       const channelName = args.join(' ');
       console.log(`Counter =>`, type, channelName);
-      if (type !== 'members' && type !== 'bots') {
+      if (type !== 'members' && type !== 'bots' && type !== 'users') {
         embed = new RichEmbed()
           .setTitle('Counter')
           .setColor(15844367)
-          .setDescription('Only members and bots counter allowed at this time.\nTry `!setcounter {type} {channel-name}`');
+          .setDescription('Only members, users & bots counter allowed at this time.\nTry `!setcounter {type} {channel-name}`');
       } else {
         const channel = message.guild.channels.find((c) => c.name === args.join(' '));
         if (!channel) {
