@@ -94,35 +94,37 @@ client.on('message', (message) => {
         console.log('message not from guild');
         return;
       }
-      if (message.member.roles.some(r => r.name === "Admin")) {
-        const type = args.splice(0, 1)[0];
-        const channelName = args.join(' ');
-        console.log(`Counter =>`, type, channelName);
-        if (type !== 'members' && type !== 'bots') {
+      if (!message.member.roles.some(r => r.name === "Admin")) {
+        return message.reply('only Admin role members can set this up');
+      }
+      const type = args.splice(0, 1)[0];
+      const channelName = args.join(' ');
+      console.log(`Counter =>`, type, channelName);
+      if (type !== 'members' && type !== 'bots' && type !== 'users') {
+        embed = new RichEmbed()
+          .setTitle('Counter')
+          .setColor(15844367)
+          .setDescription('Only members, users & bots counter allowed at this time.\nTry `!setcounter {type} {channel-name}`');
+      } else {
+        const channel = message.guild.channels.find((c) => c.name === args.join(' '));
+        if (!channel) {
           embed = new RichEmbed()
             .setTitle('Counter')
             .setColor(15844367)
-            .setDescription('Only members and bots counter allowed at this time.\nTry `!setcounter {type} {channel-name}`');
+            .setDescription(`Channel ${channelName} not found.`);
         } else {
-          const channel = message.guild.channels.find((c) => c.name === args.join(' '));
-          if (!channel) {
-            embed = new RichEmbed()
-              .setTitle('Counter')
-              .setColor(15844367)
-              .setDescription(`Channel ${channelName} not found.`);
-          } else {
-            const existing = db.get('counters')
-              .filter({guild: message.guild.id, type})
-              .value();
-            if (existing.length === 0) {
-              db.get('counters')
-                .push({guild: message.guild.id, channel: channel.id, type})
-                .write();
-            }
-            counterService.counterInterval(message.guild.id, channel.id, type);
+          const existing = db.get('counters')
+            .filter({guild: message.guild.id, type})
+            .value();
+          if (existing.length === 0) {
+            db.get('counters')
+              .push({guild: message.guild.id, channel: channel.id, type})
+              .write();
           }
+          counterService.counterInterval(message.guild.id, channel.id, type);
         }
       }
+    
       break;
   }
   if (embed) {

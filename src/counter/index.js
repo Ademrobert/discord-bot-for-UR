@@ -1,6 +1,6 @@
 
 let guildsInterval = {};
-
+let fetchedGuild = {};
 module.exports = (client) => {
   console.log('Set up counter service');
   return {
@@ -19,18 +19,39 @@ module.exports = (client) => {
       if (guildsInterval[guildId]) {
         clearInterval(guildsInterval[guildId]);
       }
-      guildsInterval[guildId] = setInterval(function () {
-         var memberCount = guild.members.filter(member => !member.user.bot).size;
-         var botCount = guild.members.filter(member => member.user.bot).size;
-         switch(type) {
-            case 'members':
-              memberCountChannel.setName(`Members: ${memberCount}`);
-              break;
-            case 'bots':
-              memberCountChannel.setName(`Bots: ${botCount}`);
-              break;
-         }
-      }, 1000);
+      guildsInterval[guildId] = setInterval(() =>{
+        if (!fetchedGuild[guildId]) {
+          fetchedGuild[guildId] = {
+            lastUpdate: new Date(0),
+          };
+        }
+        var diffMs = (fetchedGuild[guildId].lastUpdate - new Date())
+        if (diffMs > 15000) {
+          guild.fetchMembers().then((updatedGuild) => {
+            fetchedGuild[guildId] = updatedGuild;
+            fetchedGuild[guildId].lastUpdate = new Date();
+            updateChannel(updatedGuild, memberCountChannel);
+          })
+        } else {
+          updateChannel(fetchedGuild[guildId], memberCountChannel);
+        }
+      }, 5000);
     }
   };
+}
+
+function updateChannel(guild, channel) {
+  var memberCount = guild.memberCount;
+  var botCount = guild.members.filter(member => member.user.bot).size;
+  switch(type) {
+      case 'members':
+        channel.setName(`Members: ${memberCount}`);
+        break;
+      case 'bots':
+        channel.setName(`Bots: ${botCount}`);
+        break;
+      case 'users':
+        channel.setName(`Users: ${memberCount - botCount}`);
+        break;
+  }
 }
