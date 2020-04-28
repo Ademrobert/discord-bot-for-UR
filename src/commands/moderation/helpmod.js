@@ -45,6 +45,10 @@ exports.run = (client, message, args) => {
             value: "Report's user."
           },
           {
+            name: "_**!setcounter {members or bots} {channel-name})**_",
+            value: "Creates a memeber count to activate it creat a Category and then creat a private Vc and after do the command whit the Vc name and it turns that Vc in to a member Counter."
+          },
+          {
             name: "Suggestions",
             value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
           }

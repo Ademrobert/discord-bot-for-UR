@@ -30,6 +30,10 @@ exports.run = (client, message, args) => {
         value: "Help for information about music commands."
       },
       {
+        name: "_**!report (User)**_",
+        value: "Report's user, commands executable by anyone."
+      },
+      {
         name: "Suggestions",
         value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
       }
