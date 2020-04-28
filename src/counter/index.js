@@ -28,7 +28,7 @@ module.exports = (client) => {
         var diff = Math.abs(new Date() - fetchedGuild[guildId].lastUpdate);
         var minutes = Math.floor((diff/1000)/60);
         if (minutes > 1) {
-          console.log(`Updating guild: ${guild.name} => ${minutes} have passed`)
+          console.log(`Updating guild: ${guild.name} => ${minutes} minutes have passed since last update`);
           guild.fetchMembers().then((updatedGuild) => {
             fetchedGuild[guildId] = updatedGuild;
             fetchedGuild[guildId].lastUpdate = new Date();
@@ -45,6 +45,12 @@ module.exports = (client) => {
 function updateChannel(guild, channel, type) {
   var memberCount = guild.memberCount;
   var botCount = guild.members.filter(member => member.user.bot).size;
+  
+  console.log(`Updating guild: ${guild.name}
+Members: ${memberCount}
+Users: ${memberCount - botCount}
+Bots: ${botCount}
+`);
   switch(type) {
       case 'members':
         channel.setName(`Members: ${memberCount}`);
