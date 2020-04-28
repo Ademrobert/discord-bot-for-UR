@@ -28,7 +28,7 @@ module.exports = (client) => {
         var diff = Math.abs(new Date() - fetchedGuild[guildId].lastUpdate);
         var minutes = Math.floor((diff/1000)/60);
         if (minutes > 1) {
-          console.log(`Updating guild from discord ${minutes} have passed`)
+          console.log(`Updating guild: ${guild.name} => ${minutes} have passed`)
           guild.fetchMembers().then((updatedGuild) => {
             fetchedGuild[guildId] = updatedGuild;
             fetchedGuild[guildId].lastUpdate = new Date();

@@ -65,7 +65,6 @@ fs.readdir("./events/", (err, files) => {
 client.on('message', (message) => {
   const args = message.content.split(' ');
   const cmd = args.splice(0, 1).join('');
-  console.log(`Managing =>`, cmd, args);
   let embed;
   switch(cmd) {
     case '!code':
