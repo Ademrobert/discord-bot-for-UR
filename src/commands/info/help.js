@@ -34,6 +34,10 @@ exports.run = (client, message, args) => {
         value: "Report's user, commands executable by anyone."
       },
       {
+        name: "_**!website)**_",
+        value: "commands executable by anyone."
+      },
+      {
         name: "Suggestions",
         value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
       }
