@@ -70,6 +70,9 @@ client.on('message', (message) => {
     case '!code':
       embed = new RichEmbed().setTitle('Use Code').setColor(15844367).setDescription('Use Our Creator Code is: "UnstableRengades" in the Fortnite item shop :)');
       break;
+      case '!Website':
+      embed = new RichEmbed().setTitle('Website').setColor(15844367).setDescription('Our website is not public at the moment');
+      break;
     case '?online':
       embed = new RichEmbed().setTitle('Is bot online?').setColor(15844367).setDescription('Bot is online Bot is online from 9:00 Am (UTC+2) to 23:00 Pm (UTC+2)');
       break;

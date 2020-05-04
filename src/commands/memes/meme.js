@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const randomPuppy = require('random-puppy')
 
 module.exports.run = async(bot, message, args) => {
-  console.log(`${message.author.tag} used the yeet meme command.`)
+  console.log(`${message.author.tag} used the meme command.`)
   randomPuppy('memes')
             .then(url => {
                 const embed = new Discord.RichEmbed()

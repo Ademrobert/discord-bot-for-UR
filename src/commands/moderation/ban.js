@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-  console.log(`${message.author.tag} used the yeet ban command.`)
+  console.log(`${message.author.tag} used the ban command.`)
   if (!message.guild) return;
 
   const user = message.mentions.users.first();
