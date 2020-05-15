@@ -41,12 +41,12 @@ exports.run = (client, message, args) => {
             value: "Warns the user mentioned."
           },
           {
-            name: "_**!report (User)**_",
-            value: "Report's user."
+            name: "_**!report (User) (Reason)**_",
+            value: "Report's user command executable by anyone."
           },
           {
             name: "_**!setcounter {members or bots} {channel-name})**_",
-            value: "Creates a memeber count to activate it creat a Category and then creat a private Vc and after do the command whit the Vc name and it turns that Vc in to a member Counter."
+            value: "Creates a memeber count to activate it creat a Category and then creat a private Vc and after do the command whit the Vc name and it turns that Vc in to a member Counter. For example '!setcounter {members or bots} {channel-name}'"
           },
           {
             name: "Suggestions",
