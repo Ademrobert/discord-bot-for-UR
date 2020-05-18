@@ -31,7 +31,7 @@ module.exports = {
             .setTimestamp()
             .setFooter(message.guild.name, message.guild.iconURL)
             .setAuthor("Reported member", rMember.user.displayAvatarURL)
-            .setDescription(stripIndents`**- Member:** ${rMember} (${rMember.user.id})
+            .setDescription(stripIndents`**- Member:** ${user.tag} (${rMember.user.id})
             **- Reported by:** ${message.member}
             **- Reported in:** ${message.channel}
             **- Reason:** ${args.slice(1).join(" ")}`);
