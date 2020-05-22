@@ -33,7 +33,7 @@ client.on('message', message => {
     else {
       ++msgCount;
       if(parseInt(msgCount) === LIMIT) {
-        const role = message.guild.roles.cache.get('');
+        const role = message.guild.roles.cache.get('Muted');
         message.member.roles.add(role);
         message.channel.send('You have been muted.');
         setTimeout(() => {
