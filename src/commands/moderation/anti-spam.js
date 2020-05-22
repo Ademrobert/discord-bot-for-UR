@@ -2,7 +2,11 @@ require('dotenv').config();
 const { Client } = require('discord.js');
 const client = new Client();
 
-client.login(process.env.BOT_TOKEN);
+client.config = {
+	token: config.bot.token,
+	prefix: config.bot.prefix,
+	NOTALLOWED_COMMANDS: config.bot.notAllowedCommands,
+};
 
 client.on('ready', () => console.log(`${client.user.tag} has logged in.`));
 
@@ -33,7 +37,7 @@ client.on('message', message => {
     else {
       ++msgCount;
       if(parseInt(msgCount) === LIMIT) {
-        const role = message.guild.roles.cache.get('Muted');
+        const role = message.guild.roles.cache.get('713355549282009109');
         message.member.roles.add(role);
         message.channel.send('You have been muted.');
         setTimeout(() => {
