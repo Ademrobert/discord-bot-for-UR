@@ -8,7 +8,7 @@ client.on('ready', () => console.log(`${client.user.tag} has logged in.`));
 
 const usersMap = new Map();
 const LIMIT = 5;
-const TIME = 7000;
+const TIME = 4000;
 const DIFF = 3000;
 
 client.on('message', message => {
