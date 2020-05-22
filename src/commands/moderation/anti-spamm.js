@@ -6,6 +6,13 @@ const client = new Client();
 
 client.on('ready', () => console.log(`${client.user.tag} has logged in.`));
 
+client.config = {
+	token: config.bot.token,
+	prefix: config.bot.prefix,
+	NOTALLOWED_COMMANDS: config.bot.notAllowedCommands,
+};
+
+
 const usersMap = new Map();
 const LIMIT = 5;
 const TIME = 4000;
