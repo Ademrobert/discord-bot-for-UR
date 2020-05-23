@@ -17,6 +17,9 @@ client.config = {
 	NOTALLOWED_COMMANDS: config.bot.notAllowedCommands,
 };
 
+let cooldown = new Set();
+let cdseconds = 5;
+
 const counterService = require('./counter')(client);
 
 // // change working directory into server working directory!
@@ -153,4 +156,20 @@ client.login(config.bot.token)
   });
 
 
+  // Anti spamm system Code :Downarrow: 
+
+  let prefix = prefixes[message.guild.id].prefixes;
+  if(!message.content.startsWith(prefix)) return;
+  if(cooldown.has(message.author.id)){
+    message.delete();
+    message.reply("You need to wait 5 seconds between commands.")
+  }
+  //if(!message.member.hasPermission("ADMINISTRATOR")){
+    cooldown.add(message.author.id);
+ // }
+
+  setTimeout(() => {
+    cooldown.delete(message.author.id)
+  }, cdseconds * 1000)
   
+client.login(config.bot.token);
