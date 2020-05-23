@@ -5,9 +5,12 @@ const config = require("./config");
 const fs = require("fs");
 const Enmap = require("enmap");
 const database = require('./database');
+let xp = require("./xp.json");
 const db = database.getConnection({
   filename: config.database.file.name,
 });
+
+
 db.defaults({ counters: [] })
   .write();
 
@@ -152,4 +155,5 @@ client.login(config.bot.token)
     }
   });
 
-  
+  let xpAdd = Math.floor(Math.random() * 7) + 8;
+  console.log(xp);
