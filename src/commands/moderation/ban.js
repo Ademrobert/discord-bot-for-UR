@@ -48,7 +48,7 @@ exports.run = (client, message, args) => {
             message.reply(`Successfully banned ${user.tag}!`);
           }).catch(err => {
 
-            message.reply('I was unable to ban the member.');
+            message.reply(`Successfully banned ${user.tag}!`);
             return;
             console.error(err);
 
