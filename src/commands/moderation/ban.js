@@ -3,7 +3,7 @@ exports.run = (client, message, args) => {
   if (!message.guild) return;
 
   const user = message.mentions.users.first();
-  let allowedRoles = message.guild.roles.find("name", "Admin", "Mod", "Owner", "Manager", "Discord Manager", "Trainee");
+  let allowedRoles = message.guild.roles.find("name", "Admin", "Mod", "Owner", "Manager", "Discord Manager", "Trainee", "Manager");
   if (message.member.hasPermissions("BAN_MEMBERS")) {
     if (user) {
 
