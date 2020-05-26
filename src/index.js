@@ -150,7 +150,7 @@ client.login(config.bot.token)
       const embed = new RichEmbed()
         .setTitle('Website')
         .setColor(15844367)
-        .setDescription("Website isn't public at the moment");
+        .setDescription("Website Is here clikc on this link --> http://log-in-system.herokuapp.com/");
       message.channel.send(embed);
     }
   });
