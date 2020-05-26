@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
       if (reason) {
         if (member) {
 
-          member.kick('A user was banned.').then(() => {
+          member.ban('A user was banned.').then(() => {
             const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
             const reason = args.join(" ").slice(22);
 
