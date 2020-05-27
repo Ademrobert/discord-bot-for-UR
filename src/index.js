@@ -162,7 +162,7 @@ client.login(config.bot.token)
 
   const userCreatedPolls = new Map();
 
-  client.login(config.TOKEN);
+  client.login(config.bot.token);
   client.on('ready', () => console.log(client.user.tag + " has logged in."));
   
   client.on('message', async message => {
