@@ -157,3 +157,32 @@ client.login(config.bot.token)
 
   let xpAdd = Math.floor(Math.random() * 7) + 8;
   console.log(xp);
+
+
+  function ent(id, message) {
+    opts = {
+        method: 'GET',
+        headers: {
+            "authorization": 'Bot ' + config.bot.token,
+            "Content-Type": 'application/json'
+        },
+    }
+
+    fetch('https://discordapp.com/api/v6/applications/' + '598419143661846528' + '/entitlements?user_id=' + id + '&with_payments=true', opts).then(res => res.json()).then(b => { //684393832086765632
+        console.log(b.length)
+        if(b.length==0) {
+            message.channel.send('None!')
+        } else {
+            b.forEach(e=>{
+                if(e.toString().length>5) {
+                    e.sku_id=e.sku_id.replace('598419143661846528', 'Move & Kill')
+                    client.fetchUser(e.user_id).then(u=>{
+                        e.user_id=u.username
+                        message.author.send(JSON.stringify(e))
+                    })
+                }
+            })
+            message.channel.send('Done!')            
+        }
+    })  
+}
