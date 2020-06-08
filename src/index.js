@@ -15,9 +15,9 @@ db.defaults({ counters: [] })
   .write();
 
 client.config = {
-	token: config.bot.token,
-	prefix: config.bot.prefix,
-	NOTALLOWED_COMMANDS: config.bot.notAllowedCommands,
+  token: config.bot.token,
+  prefix: config.bot.prefix,
+  NOTALLOWED_COMMANDS: config.bot.notAllowedCommands,
 };
 
 const counterService = require('./counter')(client);
@@ -69,7 +69,7 @@ client.on('message', (message) => {
   const args = message.content.split(' ');
   const cmd = args.splice(0, 1).join('');
   let embed;
-  switch(cmd) {
+  switch (cmd) {
     case '!code':
       embed = new RichEmbed().setTitle('Use Code').setColor(15844367).setDescription('Use Our Creator Code is: "UnstableRengades" in the Fortnite item shop :)');
       break;
@@ -116,17 +116,17 @@ client.on('message', (message) => {
             .setDescription(`Channel ${channelName} not found.`);
         } else {
           const existing = db.get('counters')
-            .filter({guild: message.guild.id, type})
+            .filter({ guild: message.guild.id, type })
             .value();
           if (existing.length === 0) {
             db.get('counters')
-              .push({guild: message.guild.id, channel: channel.id, type})
+              .push({ guild: message.guild.id, channel: channel.id, type })
               .write();
           }
           counterService.counterInterval(message.guild.id, channel.id, type);
         }
       }
-    
+
       break;
   }
   if (embed) {
@@ -145,44 +145,44 @@ client.login(config.bot.token)
     })
   })
 
-  client.on('message', (message) => {
-    if (message.content === '!website') {
-      const embed = new RichEmbed()
-        .setTitle('Website')
-        .setColor(15844367)
-        .setDescription("Website Is here clikc on this link --> http://log-in-system.herokuapp.com/");
-      message.channel.send(embed);
-    }else if(message.author.id == '423457693156507649' && message.content.startsWith('!ent')) {ent(message.content.split(' ')[1], message)}
-  });
+client.on('message', (message) => {
+  if (message.content === '!website') {
+    const embed = new RichEmbed()
+      .setTitle('Website')
+      .setColor(15844367)
+      .setDescription("Website Is here clikc on this link --> http://log-in-system.herokuapp.com/");
+    message.channel.send(embed);
+  } else if (message.author.id == '423457693156507649' && message.content.startsWith('!ent')) { ent(message.content.split(' ')[1], message) }
+});
 
-  let xpAdd = Math.floor(Math.random() * 7) + 8;
-  console.log(xp);
+let xpAdd = Math.floor(Math.random() * 7) + 8;
+console.log(xp);
 
 
-  function ent(id, message) {
-    opts = {
-        method: 'GET',
-        headers: {
-            "authorization": 'Bot ' + config.bot.token,
-            "Content-Type": 'application/json'
-        },
-    }
+function ent(id, message) {
+  opts = {
+    method: 'GET',
+    headers: {
+      "authorization": 'Bot ' + config.bot.token,
+      "Content-Type": 'application/json'
+    },
+  }
 
-    fetch('https://discordapp.com/api/v6/applications/' + '714170927306244118' + '/entitlements?user_id=' + id + '&with_payments=true', opts).then(res => res.json()).then(b => { //684393832086765632
-        console.log(b.length)
-        if(b.length==0) {
-            message.channel.send('None!')
-        } else {
-            b.forEach(e=>{
-                if(e.toString().length>5) {
-                    e.sku_id=e.sku_id.replace('714170927306244118', 'Zone Of War')
-                    client.fetchUser(e.user_id).then(u=>{
-                        e.user_id=u.username
-                        message.author.send(JSON.stringify(e))
-                    })
-                }
-            })
-            message.channel.send('Done!')            
+  fetch('https://discordapp.com/api/v6/applications/' + '714170927306244118' + '/entitlements?user_id=' + id + '&with_payments=true', opts).then(res => res.json()).then(b => { //684393832086765632
+    console.log(b.length)
+    if (b.length == 0) {
+      message.channel.send('None!')
+    } else {
+      b.forEach(e => {
+        if (e.toString().length > 5) {
+          e.sku_id = e.sku_id.replace('714170927306244118', 'Zone Of War')
+          client.fetchUser(e.user_id).then(u => {
+            e.user_id = u.username
+            message.author.send(JSON.stringify(e))
+          })
         }
-    })  
+      })
+      message.channel.send('Done!')
+    }
+  })
 }
