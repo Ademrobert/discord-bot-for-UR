@@ -163,7 +163,7 @@ function ent(id, message) {
   opts = {
     method: 'GET',
     headers: {
-      "authorization": 'Bot ' + config.bot.token,
+      "authorization": 'Bot ' + process.env.GAME_TOKEN,
       "Content-Type": 'application/json'
     },
   }
