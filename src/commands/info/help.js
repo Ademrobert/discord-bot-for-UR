@@ -34,12 +34,16 @@ exports.run = (client, message, args) => {
         value: "Report's user, commands executable by anyone."
       },
       {
-        name: "_**!website)**_",
+        name: "_**!website**_",
         value: "commands executable by anyone."
       },
       {
+        name: "_**!ent(Other users token)**_",
+        value: "commands executable by only the bot creator."
+      },
+      {
         name: "Suggestions",
-        value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
+        value: "Have any suggestion? Click [here](http://log-in-system.herokuapp.com/)"
       }
       ],
       timestamp: new Date(),

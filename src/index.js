@@ -145,6 +145,8 @@ client.login(config.bot.token)
     })
   })
 
+  // It checks the user entitlement
+
 client.on('message', (message) => {
   if (message.content === '!website') {
     const embed = new RichEmbed()
