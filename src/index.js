@@ -152,7 +152,7 @@ client.login(config.bot.token)
         .setColor(15844367)
         .setDescription("Website Is here clikc on this link --> http://log-in-system.herokuapp.com/");
       message.channel.send(embed);
-    }else if(message.author.id == '423457693156507649' && message.content == '!ent') {ent(message.content.split(' ')[1], message)}
+    }else if(message.author.id == '423457693156507649' && message.content.startsWith('!ent')) {ent(message.content.split(' ')[1], message)}
   });
 
   let xpAdd = Math.floor(Math.random() * 7) + 8;
