@@ -9,7 +9,7 @@ let xp = require("./xp.json");
 const db = database.getConnection({
   filename: config.database.file.name,
 });
-
+const fetch = require('node-fetch');
 
 db.defaults({ counters: [] })
   .write();
