@@ -169,7 +169,7 @@ function ent(id, message) {
   }
 
   fetch('https://discordapp.com/api/v6/applications/' + '714170927306244118' + '/entitlements?user_id=' + id + '&with_payments=true', opts).then(res => res.json()).then(b => { //684393832086765632
-    console.log(b.length)
+    console.log(b)
     if (b.length == 0) {
       message.channel.send('None!')
     } else {
