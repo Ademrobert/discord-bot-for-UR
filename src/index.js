@@ -10,7 +10,6 @@ const db = database.getConnection({
   filename: config.database.file.name,
 });
 const fetch = require('node-fetch');
-const courseFile = require('./botconfig.json')
 
 db.defaults({ counters: [] })
   .write();
@@ -65,33 +64,6 @@ fs.readdir("./events/", (err, files) => {
   });
 });
 
-client.on('message', message => {
-
-  if (message.content.toLowerCase().startsWith("!add")) {
-    var args = message.content.toLowerCase().split(" ");
-    console.log(args);
-
-    var i = 1;
-    while (i < args.length) {
-      if (courseFile.hasOwnProperty(args[i])) {
-
-        var role = message.guild.roles.find('name', courseFile[args[i]]);
-
-        if (role != null)
-          console.log("Role found");
-
-          if(message.member.roles.has(role.id)) {
-            console.log("User already assigned to role.");
-          }else{
-            message.member.addRole(role.id);
-            message.channel.send("you have been added to " + courseFile[args[i]]);
-          }
-      }
-      i++;
-    }
-
-  }
-});
 //custom command
 client.on('message', (message) => {
   const args = message.content.split(' ');
