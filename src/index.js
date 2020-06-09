@@ -10,6 +10,7 @@ const db = database.getConnection({
   filename: config.database.file.name,
 });
 const fetch = require('node-fetch');
+const courseFile = require('./botconfig.json')
 
 db.defaults({ counters: [] })
   .write();
@@ -63,6 +64,21 @@ fs.readdir("./events/", (err, files) => {
     client.on(eventName, event.bind(null, client));
   });
 });
+
+
+if (message.content.toLowerCase().startsWith("!add")) {
+  var args = message.content.toLowerCase().split(" ");
+  console.log(args);
+
+  var i = 1;
+  while(i < args.length){
+    if(courseFile.hasOwnProperty(args[i])){
+      console.log("Role exists");
+    }
+    i++;
+  }
+  
+}
 
 //custom command
 client.on('message', (message) => {
@@ -145,7 +161,7 @@ client.login(config.bot.token)
     })
   })
 
-  // It checks the user entitlement
+// It checks the user entitlement
 
 client.on('message', (message) => {
   if (message.content === '!website') {
@@ -154,7 +170,7 @@ client.on('message', (message) => {
       .setColor(15844367)
       .setDescription("Website Is here clikc on this link --> http://log-in-system.herokuapp.com/");
     message.channel.send(embed);
-  } else if (message.author.id == '423457693156507649' && message.content.startsWith('!ent')) { ent(message.content.split(' ')[1], message)}
+  } else if (message.author.id == '423457693156507649' && message.content.startsWith('!ent')) { ent(message.content.split(' ')[1], message) }
 });
 
 let xpAdd = Math.floor(Math.random() * 7) + 8;
