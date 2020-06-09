@@ -74,7 +74,18 @@ client.on('message', message => {
     var i = 1;
     while (i < args.length) {
       if (courseFile.hasOwnProperty(args[i])) {
-        console.log("Role exists");
+
+        var role = message.guild.roles.find('name', courseFile[args[i]]);
+
+        if (role != null)
+          console.log("Role found");
+
+          if(message.member.roles.has(role.id)) {
+            console.log("User already assigned to role.");
+          }else{
+            message.member.addRole(role.id);
+            message.channel.send("you have been added to " + courseFile[args[i]]);
+          }
       }
       i++;
     }
