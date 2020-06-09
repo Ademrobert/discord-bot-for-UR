@@ -188,11 +188,3 @@ function ent(id, message) {
     }
   })
 }
-
-bot.on('guildMemberAdd', member => {
-  console.log('User' + member.username + 'has joined the server!')
-
-  var role = member.guild.roles.find('name', 'User');
-
-  member.addRole(Members)
-})
