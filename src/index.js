@@ -194,5 +194,5 @@ bot.on('guildMemberAdd', member => {
 
   var role = member.guild.roles.find('name', 'User');
 
-  member.addRole('MEMBERS')
+  member.addRole(Members)
 })
