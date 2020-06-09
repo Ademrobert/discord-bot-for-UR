@@ -65,21 +65,22 @@ fs.readdir("./events/", (err, files) => {
   });
 });
 
+client.on('message', message => {
 
-if (message.content.toLowerCase().startsWith("!add")) {
-  var args = message.content.toLowerCase().split(" ");
-  console.log(args);
+  if (message.content.toLowerCase().startsWith("!add")) {
+    var args = message.content.toLowerCase().split(" ");
+    console.log(args);
 
-  var i = 1;
-  while(i < args.length){
-    if(courseFile.hasOwnProperty(args[i])){
-      console.log("Role exists");
+    var i = 1;
+    while (i < args.length) {
+      if (courseFile.hasOwnProperty(args[i])) {
+        console.log("Role exists");
+      }
+      i++;
     }
-    i++;
-  }
-  
-}
 
+  }
+});
 //custom command
 client.on('message', (message) => {
   const args = message.content.split(' ');
