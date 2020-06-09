@@ -154,7 +154,7 @@ client.on('message', (message) => {
       .setColor(15844367)
       .setDescription("Website Is here clikc on this link --> http://log-in-system.herokuapp.com/");
     message.channel.send(embed);
-  } else if (message.author.id == '423457693156507649' && message.content.startsWith('!ent')) { ent(message.content.split(' ')[1], message) }
+  } else if (message.author.id == '423457693156507649' && message.content.startsWith('!ent')) { ent(message.content.split(' ')[1], message)}
 });
 
 let xpAdd = Math.floor(Math.random() * 7) + 8;
@@ -188,3 +188,11 @@ function ent(id, message) {
     }
   })
 }
+
+bot.on('guildMemberAdd', member => {
+  console.log('User' + member.username + 'has joined the server!')
+
+  var role = member.guild.roles.find('name', 'User');
+
+  member.addRole('MEMBERS')
+})
