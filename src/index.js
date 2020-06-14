@@ -193,7 +193,7 @@ function ent(id, message) {
 
 
 const BLUE_ROLE = '721829797680119838';
-const RED_ROLE = '721829814314598461';
+const MEMBER_ROLE = '717030020152950946';
 const GREEN_ROLE = '721829816248303717';
 
 
@@ -202,8 +202,8 @@ client.on('message', (message) => {
 
     if (parts[0] == '!role') {
 
-        if(parts[1] == 'red') {
-            message.member.addRole(RED_ROLE);
+        if(parts[1] == 'member') {
+            message.member.addRole(MEMBER_ROLE);
         }
         else if(parts[1] == 'green') {
             message.member.addRole(GREEN_ROLE);

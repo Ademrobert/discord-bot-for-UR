@@ -42,6 +42,10 @@ exports.run = (client, message, args) => {
         value: "commands executable by only the bot creator."
       },
       {
+        name: "_**If you want to add the member role to get verifyed run **!role member.****_",
+        value: "commands executable by anyone."
+      },
+      {
         name: "Suggestions",
         value: "Have any suggestion? Click [here](http://log-in-system.herokuapp.com/)"
       }
