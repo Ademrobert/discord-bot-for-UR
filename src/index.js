@@ -211,10 +211,8 @@ client.on('message', (message) => {
         else if(parts[1] == 'blue') {
             message.member.addRole(BLUE_ROLE);
         }
-
+        message.channel.send('Done!')
     }
-
-    message.channel.send('Done!')
 
 });
 
