@@ -216,3 +216,5 @@ bot.on('message', (message) => {
     }
 
 });
+
+config.bot.token
