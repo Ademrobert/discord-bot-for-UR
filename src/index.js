@@ -203,13 +203,13 @@ client.on('message', (message) => {
     if (parts[0] == '!role') {
 
         if(parts[1] == 'red') {
-            message.member.roles.add(RED_ROLE);
+            message.member.addRole(RED_ROLE);
         }
         else if(parts[1] == 'green') {
-            message.member.roles.add(GREEN_ROLE);
+            message.member.addRole(GREEN_ROLE);
         }
         else if(parts[1] == 'blue') {
-            message.member.roles.add(BLUE_ROLE);
+            message.member.addRole(BLUE_ROLE);
         }
 
     }
