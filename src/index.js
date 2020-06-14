@@ -188,3 +188,31 @@ function ent(id, message) {
     }
   })
 }
+
+
+const Discord = require('discord.js');
+
+const BLUE_ROLE = '721829797680119838';
+const RED_ROLE = '721829814314598461';
+const GREEN_ROLE = '721829816248303717';
+
+const bot = new Discord.Client();
+
+bot.on('message', (message) => {
+    const parts = message.content.split(' ');
+
+    if (parts[0] == '!role') {
+
+        if(parts[1] == 'red') {
+            message.member.addRole(RED_ROLE);
+        }
+        else if(parts[1] == 'green') {
+            message.member.addRole(GREEN_ROLE);
+        }
+        else if(parts[1] == 'blue') {
+            message.member.addRole(BLUE_ROLE);
+        }
+
+    }
+
+});
