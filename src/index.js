@@ -210,6 +210,8 @@ client.on('message', (message) => {
         }
         else if(parts[1] == 'blue') {
             message.member.addRole(BLUE_ROLE);
+        }else{
+          message.channel.send('Role Not Found?')
         }
         message.channel.send('Done!')
     }
