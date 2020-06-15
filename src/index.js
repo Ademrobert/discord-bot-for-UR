@@ -190,11 +190,11 @@ function ent(id, message) {
 }
 
 
-
+// role adding Code :DownArrow:
 
 const BLUE_ROLE = '721829797680119838';
 const MEMBER_ROLE = '717030020152950946';
-const GREEN_ROLE = '721829816248303717';
+const DEVELOPERS_ROLE = '717029943619354807';
 
 
 client.on('message', (message) => {
@@ -205,8 +205,8 @@ client.on('message', (message) => {
         if(parts[1] == 'member') {
             message.member.addRole(MEMBER_ROLE);
         }
-        else if(parts[1] == 'green') {
-            message.member.addRole(GREEN_ROLE);
+        else if(parts[1] == 'developers') {
+            message.member.addRole(DEVELOPERS_ROLE);
         }
         else if(parts[1] == 'blue') {
             message.member.addRole(BLUE_ROLE);
