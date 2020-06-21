@@ -38,7 +38,7 @@ const cmdDirs = [
   './commands/memes/',
   './commands/animals/',
   './commands/music/',
-  './commands/poll/',
+  './commands/poll/'
 ];
 
 cmdDirs.forEach((dir) => {
