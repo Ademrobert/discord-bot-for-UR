@@ -20,5 +20,3 @@ client.on('message', message => {
             break
     }
 });
-
-client.on()
