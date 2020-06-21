@@ -38,6 +38,7 @@ const cmdDirs = [
   './commands/memes/',
   './commands/animals/',
   './commands/music/',
+  './commands/poll/',
 ];
 
 cmdDirs.forEach((dir) => {
@@ -198,23 +199,23 @@ const DEVELOPERS_ROLE = '717029943619354807';
 
 
 client.on('message', (message) => {
-    const parts = message.content.split(' ');
+  const parts = message.content.split(' ');
 
-    if (parts[0] == '!role') {
+  if (parts[0] == '!role') {
 
-        if(parts[1] == 'member') {
-            message.member.addRole(MEMBER_ROLE);
-        }
-        else if(parts[1] == 'developers') {
-            message.member.addRole(DEVELOPERS_ROLE);
-        }
-        else if(parts[1] == 'blue') {
-            message.member.addRole(BLUE_ROLE);
-        }else{
-          message.channel.send('Role Not Found?')
-        }
-        message.channel.send('Done!')
+    if (parts[1] == 'member') {
+      message.member.addRole(MEMBER_ROLE);
     }
+    else if (parts[1] == 'developers') {
+      message.member.addRole(DEVELOPERS_ROLE);
+    }
+    else if (parts[1] == 'blue') {
+      message.member.addRole(BLUE_ROLE);
+    } else {
+      message.channel.send('Role Not Found?')
+    }
+    message.channel.send('Done!')
+  }
 
 });
 
