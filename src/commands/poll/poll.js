@@ -3,8 +3,8 @@ const client = new discord.Client();
 const config = require('./config.json');
 const userCreatedPolls = new Map();
 
-client.login(config.TOKEN);
-client.on('ready', () => console.log(client.user.tag + " has logged in."));
+client.login(config.bot.token);
+
 
 client.on('message', async message => {
     if(message.author.bot) return;
