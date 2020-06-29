@@ -193,10 +193,9 @@ function ent(id, message) {
 
 // role adding Code :DownArrow:
 
-const BLUE_ROLE = '721829797680119838';
+const COMMUNITY_ROLE = '647074559811649546';
 const MEMBER_ROLE = '717030020152950946';
 const DEVELOPERS_ROLE = '717029943619354807';
-const COMMUNITY_ROLE = '647074559811649546';
 
 
 client.on('message', (message) => {
@@ -212,9 +211,6 @@ client.on('message', (message) => {
     }
     else if (parts[1] == 'community') {
       message.member.addRole(COMMUNITY_ROLE);
-    }
-    else if (parts[1] == 'blue') {
-      message.member.addRole(BLUE_ROLE);
     } else {
       message.channel.send('Role Not Found?')
     }
