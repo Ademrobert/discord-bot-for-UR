@@ -207,10 +207,10 @@ client.on('message', (message) => {
     if (parts[1] == 'member') {
       message.member.addRole(MEMBER_ROLE);
     }
-    else if (parts[1] == 'community') {
+    else if (parts[1] == 'developers') {
       message.member.addRole(DEVELOPERS_ROLE);
     }
-    else if (parts[1] == 'developers') {
+    else if (parts[1] == 'community') {
       message.member.addRole(COMMUNITY_ROLE);
     }
     else if (parts[1] == 'blue') {
