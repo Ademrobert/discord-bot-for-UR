@@ -46,6 +46,10 @@ exports.run = (client, message, args) => {
         value: "commands executable by anyone."
       },
       {
+        name: "_**!boost**_",
+        value: "commands executable by anyone."
+      },
+      {
         name: "Suggestions",
         value: "Have any suggestion? Click [here](http://log-in-system.herokuapp.com/)"
       }
