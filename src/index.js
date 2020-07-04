@@ -149,7 +149,7 @@ client.login(config.bot.token)
 // It checks the user entitlement
 
 client.on('message', (message) => {
-  if (message.content === '!website') {
+if (message.content === '!website') {
     const embed = new RichEmbed()
       .setTitle('Website')
       .setColor(15844367)
@@ -223,3 +223,4 @@ client.on('message', (message) => {
 client.on("message", async message => {
   
 });
+
