@@ -15,7 +15,7 @@ exports.run = (client, message, args) => {
     if (!reason) {
         message.channel.send("Please type a reason.");
     }
-    message.channel.send(`<@${wUser.id}> has been Warned!.`);
+    message.channel.send(`<@${wUser.id}> has been Warned!`);
 
     if (!warns[wUser.id]) warns[wUser.id] = {
         warns: 0
