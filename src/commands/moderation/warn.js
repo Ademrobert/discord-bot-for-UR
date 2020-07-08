@@ -12,6 +12,7 @@ exports.run = (client, message, args) => {
     if (!wUser) return message.reply("Couldn't find the user.");
     if (wUser.hasPermissions("MANAGE_MESSAGES")) return message.reply("You can't warn this user.");
     let reason = args.join(" ").slice(22);
+    message.channel.send(`<@${wUser.id}> has been Warned!.`);
     if (!reason) {
         message.channel.send("Please type a reason.");
     }
