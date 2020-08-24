@@ -12,7 +12,11 @@ exports.run = (client, message, args) => {
         if (member) {
 const muterole = member.guild.roles.find(role => role.name === "Muted");
 if (!muterole){
-  message.guild.createRole({ name: 'Muted'}).then(() =>{muterole.permissions.remove("SEND_MESSAGES", "ATTACH_FILES", "SPEAK")})}
+  message.guild.createRole({ name: 'Muted'}).then(() =>{muterole.permissions.remove("SEND_MESSAGES", "ATTACH_FILES", "SPEAK")}).catch(
+    error => {
+      console.log(error)
+    }
+  )}
           member.addRole(muterole).then(() => {
 
             message.reply(`Successfully muted ${user.tag}!`);

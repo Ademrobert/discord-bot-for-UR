@@ -144,7 +144,11 @@ client.login(config.bot.token)
     countersSet.forEach((c) => {
       counterService.counterInterval(c.guild, c.channel, c.type);
     })
-  })
+  }).catch(
+    error => {
+      console.log(error)
+    }
+  )
 
 // It checks the user entitlement
 

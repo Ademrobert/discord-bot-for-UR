@@ -8,7 +8,11 @@ module.exports = (client, message) => {
     message.content = filter.clean(message.content).replace('@everyone', 'everyone');
     message.content = filter.clean(message.content).replace('@here', 'here');
     message.content = filter.clean(message.content).replace('@community', 'community');
-    message.channel.send(`${message.member.displayName}: ${message.content}`).then(() => message.delete());
+    message.channel.send(`${message.member.displayName}: ${message.content}`).then(() => message.delete()).catch(
+      error => {
+        console.log(error)
+      }
+    );
      message.member.send("Please dont say bad words :). we are good people. This time i filtered your message, its just a warn.");
     return;
   }

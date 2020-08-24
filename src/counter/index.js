@@ -6,7 +6,7 @@ module.exports = (client) => {
   return {
     counterInterval: (guildId, channelId, type) => {
       console.log('Creating interval for ', guildId, channelId);
-      const guild = client.guilds.get(guildId);
+      const guild = client.guilds.cache.get(guildId);
       if (!guild) {
         console.log('Guild not found', guildId);
         return;
@@ -33,7 +33,11 @@ module.exports = (client) => {
             fetchedGuild[guildId] = updatedGuild;
             fetchedGuild[guildId].lastUpdate = new Date();
             updateChannel(updatedGuild, memberCountChannel, type);
-          })
+          }).catch(
+            error => {
+              console.log(error)
+            }
+          );
         } else {
           updateChannel(fetchedGuild[guildId], memberCountChannel, type);
         }
