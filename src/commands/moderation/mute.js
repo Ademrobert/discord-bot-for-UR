@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
           member.guild.roles.fetch().then((role) => {
             const returnRole = role.cache.find((role) => { return role.name === 'Muted'});
             if (typeof returnRole !== 'undefined') {
-              return role;
+              return returnRole;
             } else {
               return undefined;
             }
