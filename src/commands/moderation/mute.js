@@ -23,7 +23,7 @@ exports.run = (client, message, args) => {
                 }
               )
             } else if (role.name === 'Muted') {
-              member.roles.add(role.name).then(() => {
+              member.roles.add(role).then(() => {
 
                 message.reply(`Successfully muted ${user.tag}!`);
                 const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
