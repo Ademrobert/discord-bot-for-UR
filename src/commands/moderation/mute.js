@@ -34,7 +34,7 @@ exports.run = (client, message, args) => {
                 member.roles.add(resolvedRole).then(() => {
   
                   message.reply(`Successfully muted ${user.tag}!`);
-                  const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
+                  const logs = message.guild.channels.resolve(channel => channel.name === "bot-logs");
                   const reason = args.join(" ").slice(22);
                   logs.send({
                     embed: {
