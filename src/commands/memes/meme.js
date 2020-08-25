@@ -3,11 +3,11 @@ const randomPuppy = require('random-puppy');
 const { Console } = require('console');
 const { RichEmbed, Attachment } = require('discord.js');
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(client, message, args) => {
   console.log(`${message.author.tag} used the meme command.`)
   randomPuppy('memes')
             .then(url => {
-                const embed = new RichEmbed()
+                const embed = new Discord.MessageEmbed()
                 
                 .setTitle(`Meme`)
                 .setFooter(`Requested by ${message.author.tag}`)
