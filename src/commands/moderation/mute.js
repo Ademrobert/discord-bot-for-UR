@@ -11,14 +11,11 @@ exports.run = (client, message, args) => {
         if (member) {
           member.guild.roles.fetch().then((role) => {
             const returnRole = role.cache.find((role) => { return role.name === 'Muted'});
-            console.log(returnRole);
-            // if () {
-            //   console.log(role);
-            //   return role;
-            // } else {
-            //   console.log('no role');
-            //   return undefined;
-            // }
+            if (typeof returnRole !== 'undefined') {
+              return role;
+            } else {
+              return undefined;
+            }
           }).then((resolvedRole) => {
             if (typeof resolvedRole === 'undefined') {
               message.guild.roles.create({
