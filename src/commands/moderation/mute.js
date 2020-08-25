@@ -64,7 +64,6 @@ exports.run = (client, message, args) => {
               console.log(error)
             }
           )
-          console.log(muterole)
 
         } else {
 
