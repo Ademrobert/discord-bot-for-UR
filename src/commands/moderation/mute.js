@@ -10,7 +10,7 @@ exports.run = (client, message, args) => {
       if (reason) {
         if (member) {
           const muterole = member.guild.roles.fetch().then(role => role.cache.forEach(role => {
-           console.log(role.name);
+           console.log(role.name === 'Muted');
             return role.name === 'Muted';
           })).catch(
             error => {
