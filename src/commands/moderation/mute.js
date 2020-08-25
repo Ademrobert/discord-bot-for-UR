@@ -2,7 +2,7 @@ exports.run = (client, message, args) => {
     if (!message.guild) return;
 
       const user = message.mentions.users.first();
-      if(message.member.hasPermissions("MUTE_MEMBERS")){
+      if(message.member.hasPermission("MUTE_MEMBERS")){
       if (user) {
 
         const member = message.guild.member(user);
