@@ -9,69 +9,66 @@ exports.run = (client, message, args) => {
       let reason = args.join(" ").slice(22);
       if (reason) {
         if (member) {
-          member.guild.roles.fetch().then(role => role.cache.forEach(role => {
-            if (role.name !== 'Muted') {
-              message.guild.roles.create({
-                data: {
-                  name: 'Muted',
-                  color: 'Grey',
-                },
-                reason: 'we needed a Muted role So thats why i created one!'
-              }).then((newrole) => { newrole.permissions.remove("SEND_MESSAGES", "ATTACH_FILES", "SPEAK") }).catch(
-                error => {
-                  console.log(error)
-                }
-              )
-            } else if (role.name === 'Muted') {
-              member.roles.add(role).then(() => {
+          const roleExists = member.guild.roles.fetch().then(role => role.cache.find(role => { role.name === 'Muted'}))
+          console.log(roleExists);
+          if (typeof roleExists !== 'undefined') {
+            message.guild.roles.create({
+              data: {
+                name: 'Muted',
+                color: 'Grey',
+              },
+              reason: 'we needed a Muted role So thats why i created one!'
+            }).then((newrole) => { newrole.permissions.remove("SEND_MESSAGES", "ATTACH_FILES", "SPEAK") }).catch(
+              error => {
+                console.log(error)
+              }
+            )
+          }
+          else if (roleExists === 'Muted') {
+            member.roles.add(role).then(() => {
 
-                message.reply(`Successfully muted ${user.tag}!`);
-                const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
-                const reason = args.join(" ").slice(22);
-                logs.send({
-                  embed: {
-                    color: 000000,
-                    author: {
-                      name: client.user.username,
-                      icon_url: client.user.avatarURL
+              message.reply(`Successfully muted ${user.tag}!`);
+              const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
+              const reason = args.join(" ").slice(22);
+              logs.send({
+                embed: {
+                  color: 000000,
+                  author: {
+                    name: client.user.username,
+                    icon_url: client.user.avatarURL
+                  },
+                  title: "Mute",
+                  description: `A user has been muted in #${message.channel.name}`,
+                  fields: [
+                    {
+                      name: "**User muted:**",
+                      value: `${user.tag}`,
                     },
-                    title: "Mute",
-                    description: `A user has been muted in #${message.channel.name}`,
-                    fields: [
-                      {
-                        name: "**User muted:**",
-                        value: `${user.tag}`,
-                      },
-                      {
-                        name: "**Muted by:**",
-                        value: `${message.author}`,
-                      },
-                      {
-                        name: "**Reason:**",
-                        value: `${reason}`,
-                      },
+                    {
+                      name: "**Muted by:**",
+                      value: `${message.author}`,
+                    },
+                    {
+                      name: "**Reason:**",
+                      value: `${reason}`,
+                    },
 
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                      icon_url: client.user.avatarURL,
-                    }
+                  ],
+                  timestamp: new Date(),
+                  footer: {
+                    icon_url: client.user.avatarURL,
                   }
-                });
-              }).catch(err => {
-
-                message.reply('I was unable to mute the member.');
-
-                console.error(err);
+                }
               });
-            }
-          })).catch(
-            error => {
-              console.log(error)
-            }
-          )
+            }).catch(err => {
 
-        } else {
+              message.reply('I was unable to mute the member.');
+
+              console.error(err);
+            });
+          }
+        }
+         else {
 
           message.reply('That user isn\'t in this guild!'); return;
         }
