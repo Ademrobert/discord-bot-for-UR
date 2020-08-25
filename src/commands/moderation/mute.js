@@ -9,9 +9,15 @@ exports.run = (client, message, args) => {
       let reason = args.join(" ").slice(22);
       if (reason) {
         if (member) {
-          const roleExists = member.guild.roles.fetch().then(role => role.cache.find(role => { role.name === 'Muted'}))
-          console.log(roleExists);
-          if (typeof roleExists !== 'undefined') {
+          const role = member.guild.roles.fetch().then((role) => {
+            if (typeof role.cache.find(role => { role.name === 'Muted'}) !== 'undefined') {
+              return role;
+            } else {
+              return undefined;
+            }
+          });
+          console.log(role);
+          if (typeof role !== 'undefined') {
             message.guild.roles.create({
               data: {
                 name: 'Muted',
@@ -24,7 +30,7 @@ exports.run = (client, message, args) => {
               }
             )
           }
-          else if (roleExists === 'Muted') {
+          else {
             member.roles.add(role).then(() => {
 
               message.reply(`Successfully muted ${user.tag}!`);
