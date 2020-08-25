@@ -2,6 +2,7 @@ exports.run = (client, message, args) => {
     if (!message.guild) return;
 
       const user = message.mentions.users.first();
+      let allowedRoles = message.guild.roles.find("name","Admin","Mod","Owner","Manager","Discord Manager","Trainee");
       if(message.member.hasPermissions("MUTE_MEMBERS")){
       if (user) {
 
