@@ -21,6 +21,7 @@ exports.run = (client, message, args) => {
               }
             )
           }
+          console.log(muterole)
           member.roles.add(muterole).then(() => {
 
             message.reply(`Successfully muted ${user.tag}!`);
