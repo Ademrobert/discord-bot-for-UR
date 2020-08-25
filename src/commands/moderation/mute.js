@@ -17,7 +17,7 @@ exports.run = (client, message, args) => {
             }
           });
           console.log(role);
-          if (typeof role !== 'undefined') {
+          if (typeof role === 'undefined') {
             message.guild.roles.create({
               data: {
                 name: 'Muted',
