@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
         if (member) {
           member.guild.roles.fetch().then((role) => {
             const returnRole = role.cache.find(role => { role.name === 'Muted'})
-            console.log(returnRole);
+            console.log(role.cache);
             // if () {
             //   console.log(role);
             //   return role;
