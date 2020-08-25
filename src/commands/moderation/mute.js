@@ -9,7 +9,7 @@ exports.run = (client, message, args) => {
       let reason = args.join(" ").slice(22);
       if (reason) {
         if (member) {
-          const muterole = member.guild.roles.fetch().then(role => console.log(role.name)).catch(
+          const muterole = member.guild.roles.fetch().then(role => console.log(role)).catch(
             error => {
               console.log(error)
             }
