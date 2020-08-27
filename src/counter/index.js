@@ -30,6 +30,8 @@ module.exports = (client) => {
         if (minutes > 1) {
           console.log(`Updating guild: ${guild.name} => ${minutes} minutes have passed since last update`);
           guild.members.fetch((updatedGuild) => {
+            console.log(fetchedGuild[guildId]);
+            console.log(updatedGuild);
             fetchedGuild[guildId] = updatedGuild;
             fetchedGuild[guildId].lastUpdate = new Date();
             updateChannel(updatedGuild, memberCountChannel, type);
