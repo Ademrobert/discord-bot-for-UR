@@ -132,7 +132,7 @@ function stop(client, message, serverQueue) {
       "You have to be in a voice channel to stop the music!"
     );
   serverQueue.songs = [];
-  serverQueue.connection.dispatcher.end();
+  serverQueue.connection.dispatcher..destroy()();
 }
 
 function play(guild, song) {
