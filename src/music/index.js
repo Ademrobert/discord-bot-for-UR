@@ -31,6 +31,7 @@ module.exports = {
 }
 
 function getVoiceChannel(client, message) {
+  console.log(message);
   if (!message.member.voiceChannelID) {
     message.channel.send(
       "You need to be in a voice channel to play music!"
@@ -55,7 +56,6 @@ function getVoiceChannel(client, message) {
 }
 
 async function execute(songCode, client, message, serverQueue, song) {
-  console.log(message);
   const voiceChannel = getVoiceChannel(client, message);
   if (!voiceChannel) {
     return;
