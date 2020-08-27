@@ -70,6 +70,7 @@ async function execute(songCode, client, message, serverQueue, song) {
         url: songInfo.video_url
       };
     } catch (err) {
+      console.log(err);
       if (err.message.indexOf('No video id found') > -1) {
         search(songCode, client, message, serverQueue);
         return;
@@ -203,7 +204,6 @@ async function search(song, client, message, serverQueue) {
   let text = 'Please pick a song to play:\n';
   videos.slice(0, 5).forEach((v, idx) => {
     const emoji = getReplyEmoji(idx + 1, client);
-    console.log(emoji);
     const views = String( v.views ).padStart( 10, ' ' )
     console.log( `${ views } | ${ v.title } (${ v.timestamp }) | ${ v.author.name } | ${v.id}` );
     text += `- ${emoji} ${ v.title } (${ v.timestamp })\n`;
