@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
       if (member) {
 
           member.kick('A user was kicked.').then(() => {
-                    const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
+                    const logs = message.guild.channels.cache.find(channel => channel.name === "bot-logs");
         const reason = args.join(" ").slice(22);
         
     logs.send({embed: {
