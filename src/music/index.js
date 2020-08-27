@@ -72,6 +72,7 @@ async function execute(songCode, client, message, serverQueue, song) {
     } catch (err) {
       console.log(err);
       if (err.toString().indexOf('No video id found') > -1) {
+        console.log(err.toString().indexOf('No video id found'));
         search(songCode, client, message, serverQueue);
         return;
       }
