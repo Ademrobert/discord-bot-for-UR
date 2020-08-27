@@ -48,8 +48,9 @@ exports.run = (client, message, args) => {
           }).catch(err => {
 
             message.reply('I was unable to kick the member.'); 
-return;
             console.error(err);
+
+return;
 
 
           });
