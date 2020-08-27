@@ -138,6 +138,7 @@ function play(guild, song) {
   }
   const stream = ytdl(song.url, { filter: "audioonly" });
 
+  console.log(serverQueue);
   serverQueue.dispatcher = serverQueue.connection
     .playStream(stream)
     .on("end", function () {
