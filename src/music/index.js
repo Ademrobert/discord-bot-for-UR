@@ -7,7 +7,6 @@ const queue = new Map();
 
 module.exports = {
   handle: async (cmd, args, message, client) => {
-    console.log(message);
     const text = args.join(' ');
     const serverQueue = queue.get(message.guild.id);
     switch(cmd) {
@@ -56,6 +55,7 @@ function getVoiceChannel(client, message) {
 }
 
 async function execute(songCode, client, message, serverQueue, song) {
+  console.log(message);
   const voiceChannel = getVoiceChannel(client, message);
   if (!voiceChannel) {
     return;
