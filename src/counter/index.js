@@ -11,7 +11,7 @@ module.exports = (client) => {
         console.log('Guild not found', guildId);
         return;
       }  
-      var memberCountChannel = client.channels.get(channelId);
+      var memberCountChannel = client.channels.cache.get(channelId);
       if (!memberCountChannel) {
         console.log('Channel not found', channelId);
         return;
