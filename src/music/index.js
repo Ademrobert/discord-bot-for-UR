@@ -62,6 +62,7 @@ function getVoiceChannel(client, message) {
 
 async function execute(songCode, client, message, serverQueue, song) {
   const voiceChannel = getVoiceChannel(client, message);
+  console.log(voiceChannel);
   if (!voiceChannel) {
     return;
   }
@@ -99,6 +100,7 @@ async function execute(songCode, client, message, serverQueue, song) {
 
     try {
       var connection = await voiceChannel.join();
+      console.log(connection);
       queueContruct.connection = connection;
       play(message.guild, queueContruct.songs[0]);
     } catch (err) {
