@@ -31,7 +31,6 @@ module.exports = {
 }
 
 function getVoiceChannel(client, message) {
-  console.log(message);
   if (!message.member.voiceChannelID) {
     message.channel.send(
       "You need to be in a voice channel to play music!"
