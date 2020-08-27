@@ -72,7 +72,6 @@ async function execute(songCode, client, message, serverQueue, song) {
     } catch (err) {
       console.log(err);
       if (err.toString().indexOf('No video id found') > -1) {
-        console.log(err.toString().indexOf('No video id found'));
         search(songCode, client, message, serverQueue);
         return;
       }
@@ -200,10 +199,13 @@ function getReplyEmoji(number, client) {
 
 async function search(song, client, message, serverQueue) {
   const r = await yts(song);
+  console.log(r);
   const videos = r.videos;
+  console.log(videos);
   const choices = [];
   let text = 'Please pick a song to play:\n';
   videos.slice(0, 5).forEach((v, idx) => {
+    console.log("hey hey hey hey hey hey!");
     const emoji = getReplyEmoji(idx + 1, client);
     const views = String( v.views ).padStart( 10, ' ' )
     console.log( `${ views } | ${ v.title } (${ v.timestamp }) | ${ v.author.name } | ${v.id}` );
