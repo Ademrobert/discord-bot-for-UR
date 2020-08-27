@@ -123,6 +123,7 @@ function skip(client, message, serverQueue) {
   if (!serverQueue)
     return message.channel.send("There is no song that I could skip!");
   serverQueue.connection.dispatcher.destroy();
+  client.voice.connections.delete();
 }
 
 function stop(client, message, serverQueue) {
@@ -133,6 +134,7 @@ function stop(client, message, serverQueue) {
     );
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.destroy();
+  client.voice.connections.delete();
 }
 
 function play(guild, song) {
