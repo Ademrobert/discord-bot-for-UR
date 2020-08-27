@@ -1,5 +1,5 @@
 const ytdl = require("ytdl-core");
-const yts = require( 'yt-search' )
+const yts = require('yt-search')
 const prompter = require('discordjs-prompter');
 const Discord = require('discord.js');
 
@@ -9,7 +9,7 @@ module.exports = {
   handle: async (cmd, args, message, client) => {
     const text = args.join(' ');
     const serverQueue = queue.get(message.guild.id);
-    switch(cmd) {
+    switch (cmd) {
       case '!play':
         execute(text, client, message, serverQueue);
         break;
@@ -70,7 +70,6 @@ async function execute(songCode, client, message, serverQueue, song) {
         url: songInfo.video_url
       };
     } catch (err) {
-      console.log(err);
       if (err.toString().indexOf('No video id found') > -1) {
         search(songCode, client, message, serverQueue);
         return;
@@ -137,16 +136,16 @@ function play(guild, song) {
     queue.delete(guild.id);
     return;
   }
-  const stream = ytdl(song.url, {filter: "audioonly"});
+  const stream = ytdl(song.url, { filter: "audioonly" });
 
   serverQueue.dispatcher = serverQueue.connection
     .playStream(stream)
-    .on("end", function() {
+    .on("end", function () {
       serverQueue.songs.shift();
       play(guild, serverQueue.songs[0]);
     });
   serverQueue.dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-  
+
   serverQueue.textChannel.send({
     embed: getEmbed(song, true),
   });
@@ -162,7 +161,7 @@ function list(message, guild) {
         url: 'https://i.pinimg.com/originals/de/1c/91/de1c91788be0d791135736995109272a.png',
       },
       fields: serverQueue.songs.map((song, idx) => {
-        return { name: `${idx+1}${idx+1 === 1 ? '     \:musical_note:' : ''}`, value: `[${song.title}](${song.url})` };
+        return { name: `${idx + 1}${idx + 1 === 1 ? '     \:musical_note:' : ''}`, value: `[${song.title}](${song.url})` };
       }),
       timestamp: new Date(),
     };
@@ -173,7 +172,7 @@ function list(message, guild) {
 }
 
 function getReplyEmoji(number, client) {
-  switch(number){
+  switch (number) {
     case 0:
       return '0️⃣';
     case 1:
@@ -198,7 +197,10 @@ function getReplyEmoji(number, client) {
 }
 
 async function search(song, client, message, serverQueue) {
-  const r = await yts(song);
+  const r = yts(song, function (err, r) {
+    if (err) throw err
+    console.log(r);
+  });
   console.log(r);
   const videos = r.videos;
   console.log(videos);
@@ -207,9 +209,9 @@ async function search(song, client, message, serverQueue) {
   videos.slice(0, 5).forEach((v, idx) => {
     console.log("hey hey hey hey hey hey!");
     const emoji = getReplyEmoji(idx + 1, client);
-    const views = String( v.views ).padStart( 10, ' ' )
-    console.log( `${ views } | ${ v.title } (${ v.timestamp }) | ${ v.author.name } | ${v.id}` );
-    text += `- ${emoji} ${ v.title } (${ v.timestamp })\n`;
+    const views = String(v.views).padStart(10, ' ')
+    console.log(`${views} | ${v.title} (${v.timestamp}) | ${v.author.name} | ${v.id}`);
+    text += `- ${emoji} ${v.title} (${v.timestamp})\n`;
     choices.push({
       emoji,
       song: {
@@ -230,7 +232,7 @@ async function search(song, client, message, serverQueue) {
 }
 
 function getEmbed(song, playing) {
-  const views = String( song.views ).padStart( 10, ' ' )
+  const views = String(song.views).padStart(10, ' ')
   return {
     color: 3447003,
     title: playing ? 'Now Playing' : 'Added to Queue',
