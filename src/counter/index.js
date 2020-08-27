@@ -12,6 +12,7 @@ module.exports = (client) => {
         return;
       }  
       var memberCountChannel = client.channels.cache.get(channelId);
+      console.log(memberCountChannel);
       if (!memberCountChannel) {
         console.log('Channel not found', channelId);
         return;
