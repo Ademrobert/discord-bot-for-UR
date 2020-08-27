@@ -7,6 +7,7 @@ const queue = new Map();
 
 module.exports = {
   handle: async (cmd, args, message, client) => {
+    console.log(message);
     const text = args.join(' ');
     const serverQueue = queue.get(message.guild.id);
     switch(cmd) {
