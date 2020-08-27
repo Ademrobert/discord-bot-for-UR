@@ -41,11 +41,13 @@ const cmdDirs = [
   './commands/poll/'
 ];
 
+
 cmdDirs.forEach((dir) => {
   fs.readdir(dir, (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
       if (!file.endsWith(".js")) return;
+      console.log(`${dir}${file}`);
       let props = require(`${dir}${file}`);
       let commandName = file.split(".")[0];
       console.log(`Attempting to load ${dir} directory ${commandName}`);
