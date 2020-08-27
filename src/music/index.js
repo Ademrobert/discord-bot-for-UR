@@ -140,6 +140,7 @@ function stop(client, message, serverQueue) {
 }
 
 function play(guild, song) {
+  console.log("play");
   const serverQueue = queue.get(guild.id);
   if (!song) {
     serverQueue.voiceChannel.leave();
