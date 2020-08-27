@@ -111,7 +111,7 @@ client.on('message', (message) => {
           .setColor(15844367)
           .setDescription('Only members, users & bots counter allowed at this time.\nTry `!setcounter {type} {channel-name}`');
       } else {
-        const channel = message.guild.channels.find((c) => c.name === args.join(' '));
+        const channel = message.guild.channels.cache.find((c) => c.name === args.join(' '));
         if (!channel) {
           embed = new RichEmbed()
             .setTitle('Counter')
