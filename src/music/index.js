@@ -26,7 +26,13 @@ module.exports = {
         await list(message, message.guild);
         break;
     }
-    message.delete();
+    message.delete()
+      .catch(error => {
+        // Only log the error if it is not an Unknown Message error
+        if (error.code !== 10008) {
+          console.error('Failed to delete the message:', error);
+        }
+      });
   },
 }
 
