@@ -37,7 +37,7 @@ function getVoiceChannel(client, message) {
     );
     return;
   }
-  const voiceChannel = client.channels.get(message.member.voiceChannelID);
+  const voiceChannel = client.channels.cache.get(message.member.voiceChannelID);
   if (!voiceChannel) {
     message.channel.send(
       "You need to be in a voice channel to play music!"
