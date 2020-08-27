@@ -33,11 +33,7 @@ module.exports = (client) => {
             fetchedGuild[guildId] = updatedGuild;
             fetchedGuild[guildId].lastUpdate = new Date();
             updateChannel(updatedGuild, memberCountChannel, type);
-          }).catch(
-            error => {
-              console.log(error)
-            }
-          );
+          });
         } else {
           updateChannel(fetchedGuild[guildId], memberCountChannel, type);
         }
