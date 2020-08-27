@@ -46,7 +46,7 @@ module.exports = (client) => {
 
 function updateChannel(guild, channel, type) {
   var memberCount = guild.memberCount;
-  var botCount = guild.members.cache.filter(member => member.user.bot).size;
+  var botCount = guild.members.filter(member => member.user.bot).size;
   
   console.log(`Updating guild: ${guild.name}
 Members: ${memberCount}
