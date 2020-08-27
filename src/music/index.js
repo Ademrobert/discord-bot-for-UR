@@ -149,10 +149,7 @@ function play(guild, song) {
     .on("end", function () {
       serverQueue.songs.shift();
       play(guild, serverQueue.songs[0]);
-    }).catch((err) => {
-      console.log(err);
-    }
-    );
+    });
   serverQueue.dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
   serverQueue.textChannel.send({
