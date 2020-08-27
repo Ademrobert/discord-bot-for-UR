@@ -113,7 +113,7 @@ client.on('message', (message) => {
       } else {
         const channel = message.guild.channels.cache.find((c) => c.name === args.join(' '));
         if (!channel) {
-          embed = new RichEmbed()
+          embed = new Discord.MessageEmbed()
             .setTitle('Counter')
             .setColor(15844367)
             .setDescription(`Channel ${channelName} not found.`);
