@@ -1,7 +1,6 @@
 const { handle } = require('../../music');
 
 exports.run = async (client, message, args) => {
-  console.log(message);
   console.log(`${message.author.tag} used the !play command.`)
 
   if (message.author.bot) return;

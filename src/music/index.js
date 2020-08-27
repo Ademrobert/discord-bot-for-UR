@@ -31,13 +31,13 @@ module.exports = {
 }
 
 function getVoiceChannel(client, message) {
-  if (!message.member.voiceChannelID) {
+  if (!message.member.voice.channelID) {
     message.channel.send(
       "You need to be in a voice channel to play music!"
     );
     return;
   }
-  const voiceChannel = client.channels.cache.get(message.member.voiceChannelID);
+  const voiceChannel = client.channels.cache.get(message.member.voice.channelID);
   if (!voiceChannel) {
     message.channel.send(
       "You need to be in a voice channel to play music!"
