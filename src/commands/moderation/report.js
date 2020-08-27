@@ -10,7 +10,7 @@ module.exports = {
         
         if (message.deletable) message.delete();
 
-        let rMember = message.mentions.members.first() || message.guild.members.get(args[0]);
+        let rMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
         if (!rMember)
             return message.reply("Couldn't find that person?").then(m => m.delete(8000)).catch(
@@ -33,7 +33,7 @@ module.exports = {
                 }
               );
         
-        const channel = message.guild.channels.find(c => c.name === "reports")
+        const channel = message.guild.channels.cache.find(c => c.name === "reports")
             
         if (!channel)
             return message.channel.send("Couldn't find a `#reports` channel").then(m => m.delete(8000)).catch(
