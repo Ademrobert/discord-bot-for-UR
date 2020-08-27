@@ -134,7 +134,7 @@ function stop(client, message, serverQueue) {
     );
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.destroy();
-  client.voice.connections.delete();
+  serverQueue.voiceChannel.leave();
 }
 
 function play(guild, song) {
