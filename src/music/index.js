@@ -197,13 +197,10 @@ function getReplyEmoji(number, client) {
 }
 
 async function search(song, client, message, serverQueue) {
-  const r = yts(song, function (err, r) {
-    if (err) throw err
-    console.log(r);
-  });
-  console.log(r);
+  const r = await yts(song);
+  //console.log(r);
   const videos = r.videos;
-  console.log(videos);
+  //console.log(videos);
   const choices = [];
   let text = 'Please pick a song to play:\n';
   videos.slice(0, 5).forEach((v, idx) => {
