@@ -5,8 +5,7 @@ exports.run = (client, message, args) => {
     if (!message.guild) return;
   
       const user = message.mentions.users.first();
-      let allowedRoles = message.guild.roles.find("name", "Admin", "Mod", "Owner","Manager","Discord Manager","Trainee");
-      if(message.member.hasPermissions("BAN_MEMBERS")){
+      if(message.member.hasPermission("BAN_MEMBERS")){
   
         let reason = args.join(" ").slice(22);
         if(reason){
@@ -21,7 +20,7 @@ exports.run = (client, message, args) => {
   
       wUser.ban('A user was temporarily banned.');
       message.channel.send(`<@${wUser.id}> has been temporarily banned.`);
-      const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
+      const logs = message.guild.channels.cache.find(channel => channel.name === "bot-logs");
       const reason = args.join(" ").slice(22);
   logs.send({embed: {
       color: 000000,
