@@ -1,5 +1,6 @@
 const { RichEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
+const Discord = require('discord.js');
 
 module.exports = {
     name: "report",
@@ -42,7 +43,7 @@ module.exports = {
                 }
               );
 
-        const embed = new RichEmbed()
+        const embed = new Discord.MessageEmbed()
             .setColor("#ff0000")
             .setTimestamp()
             .setFooter(message.guild.name, message.guild.iconURL)
