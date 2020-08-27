@@ -99,7 +99,7 @@ client.on('message', (message) => {
         console.log('message not from guild');
         return;
       }
-      if (!message.member.roles.some(r => r.name === "Admin")) {
+      if (!message.member.roles.cache.some(r => r.name === "Admin")) {
         return message.reply('only Admin role members can set this up');
       }
       const type = args.splice(0, 1)[0];
