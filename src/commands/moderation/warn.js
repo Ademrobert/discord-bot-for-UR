@@ -34,7 +34,7 @@ exports.run = (client, message, args) => {
         .addField("Number of warnings", warns[wUser.id].warns)
         .addField("Reason", reason);
 
-    let warnchannel = message.guild.channels.cache.find(`name`, "bot-logs");
+    let warnchannel = message.guild.channels.cache.find(channel => channel.name === "bot-logs");
     if (!warnchannel) return message.reply("Couldn't find channel.");
 
     warnchannel.send(warnEmbed);
