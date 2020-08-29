@@ -41,7 +41,7 @@ exports.run = (client, message, args) => {
 
 
     if (warns[wUser.id].warns == 3) {
-        let muterole = message.guild.roles.find(`name`, "Muted");
+        let muterole = message.guild.roles.cache.find(`name`, "Muted");
         if (!muterole) return message.reply("Role Muted not found.");
 
         let mutetime = "30m";
