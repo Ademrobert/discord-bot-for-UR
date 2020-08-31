@@ -3,7 +3,7 @@ const yts = require('yt-search')
 const prompter = require('discordjs-prompter');
 const Discord = require('discord.js');
 
-const queue = new Map();
+let queue = new Map();
 
 module.exports = {
   handle: async (cmd, args, message, client) => {
