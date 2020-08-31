@@ -222,6 +222,7 @@ async function search(song, client, message, serverQueue) {
   videos.slice(0, 5).forEach((v, idx) => {
     console.log("Search is executing...");
     const emoji = getReplyEmoji(idx + 1, client);
+    console.log(idx);
     const views = String(v.views).padStart(10, ' ');
     console.log(`${views} | ${v.title} (${v.timestamp}) | ${v.author.name} | ${v.id}`);
     text += `- ${emoji} ${v.title} (${v.timestamp})\n`;
