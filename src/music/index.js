@@ -215,9 +215,9 @@ async function search(song, client, message, serverQueue) {
   const choices = [];
   let text = 'Please pick a song to play:\n';
   videos.slice(0, 5).forEach((v, idx) => {
-    console.log("hey hey hey hey hey hey!");
+    console.log("Search is executing...");
     const emoji = getReplyEmoji(idx + 1, client);
-    const views = String(v.views).padStart(10, ' ')
+    const views = String(v.views).padStart(10, ' ');
     console.log(`${views} | ${v.title} (${v.timestamp}) | ${v.author.name} | ${v.id}`);
     text += `- ${emoji} ${v.title} (${v.timestamp})\n`;
     choices.push({
@@ -233,7 +233,10 @@ async function search(song, client, message, serverQueue) {
     choices: choices.map((i) => i.emoji),
     userId: message.author.id
   });
+  console.log(response);
+  console.log(message);
   if (response) {
+    console.log("executed!");
     const choice = choices.find((i) => i.emoji === response);
     execute(null, client, message, serverQueue, choice.song);
   }
