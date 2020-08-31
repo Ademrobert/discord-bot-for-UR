@@ -62,7 +62,8 @@ function getVoiceChannel(client, message) {
 
 async function execute(songCode, client, message, serverQueue, song) {
   const voiceChannel = getVoiceChannel(client, message);
-  console.log(voiceChannel);
+  console.log(serverQueue);
+  console.log("SERVERQUEUE IS BEING LOGGED HARD!!!");
   if (!voiceChannel) {
     return;
   }
@@ -85,6 +86,7 @@ async function execute(songCode, client, message, serverQueue, song) {
   }
 
   if (!serverQueue) {
+    console.log("there is no serverQueue OH NO!!!!!")
     const queueContruct = {
       textChannel: message.channel,
       voiceChannel: voiceChannel,
@@ -97,6 +99,7 @@ async function execute(songCode, client, message, serverQueue, song) {
     queue.set(message.guild.id, queueContruct);
 
     queueContruct.songs.push(song);
+
 
     try {
       var connection = await voiceChannel.join();
