@@ -156,7 +156,7 @@ function play(guild, song) {
 
   serverQueue.dispatcher = serverQueue.connection
     .play(stream)
-    .on("end", function () {
+    .on("finish", function () {
       serverQueue.songs.shift();
       play(guild, serverQueue.songs[0]);
     });
