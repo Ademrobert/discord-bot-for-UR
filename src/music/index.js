@@ -123,12 +123,13 @@ function skip(client, message, serverQueue) {
   const voiceChannel = getVoiceChannel(client, message);
   if (!voiceChannel)
     return message.channel.send(
-      "You have to be in a voice channel to stop the music!"
+      "You have to be in a voice channel to Skip the music!"
     );
   if (!serverQueue)
     return message.channel.send("There is no song that I could skip!");
-  serverQueue.connection.dispatcher.destroy();
-  client.voice.connections.delete();
+  serverQueue.songs.shift();
+  play(message.guild, serverQueue.songs[0]);
+
 }
 
 function stop(client, message, serverQueue) {
