@@ -140,6 +140,7 @@ function stop(client, message, serverQueue) {
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.destroy();
   serverQueue.voiceChannel.leave();
+  serverQueue = undefined;
 }
 
 function play(guild, song) {
