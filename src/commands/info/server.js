@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
 
   let inline = true
   let sicon = message.guild.iconURL;
-  let serverembed = new Discord.RichEmbed()
+  let serverembed = new Discord.MessageEmbed()
     .setColor("#000000")
     .setThumbnail(sicon)
     .setAuthor(message.guild.name)
