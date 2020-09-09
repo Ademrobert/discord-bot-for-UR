@@ -3,8 +3,7 @@ exports.run = (client, message, args) => {
   if (!message.guild) return;
 
   const user = message.mentions.users.first();
-  let allowedRoles = message.guild.roles.find("name", "Admin", "Mod", "Owner", "Manager", "Discord Manager", "Trainee", "Manager");
-  if (message.member.hasPermissions("BAN_MEMBERS")) {
+  if (message.member.hasPermission("BAN_MEMBERS")) {
     if (user) {
 
       const member = message.guild.member(user);
@@ -13,7 +12,7 @@ exports.run = (client, message, args) => {
         if (member) {
 
           member.ban('A user was banned.').then(() => {
-            const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
+            const logs = message.guild.channels.cache.find(channel => channel.name === "bot-logs");
             const reason = args.join(" ").slice(22);
 
             logs.send({
@@ -49,8 +48,8 @@ exports.run = (client, message, args) => {
           }).catch(err => {
 
             message.reply('I was unable to ban the member.');
-            return;
             console.error(err);
+            return;
 
 
           });

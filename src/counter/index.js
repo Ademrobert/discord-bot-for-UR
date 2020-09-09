@@ -6,12 +6,13 @@ module.exports = (client) => {
   return {
     counterInterval: (guildId, channelId, type) => {
       console.log('Creating interval for ', guildId, channelId);
-      const guild = client.guilds.get(guildId);
+      const guild = client.guilds.cache.get(guildId);
       if (!guild) {
         console.log('Guild not found', guildId);
         return;
       }  
-      var memberCountChannel = client.channels.get(channelId);
+      var memberCountChannel = client.channels.cache.get(channelId);
+      console.log(memberCountChannel);
       if (!memberCountChannel) {
         console.log('Channel not found', channelId);
         return;
@@ -29,11 +30,11 @@ module.exports = (client) => {
         var minutes = Math.floor((diff/1000)/60);
         if (minutes > 1) {
           console.log(`Updating guild: ${guild.name} => ${minutes} minutes have passed since last update`);
-          guild.fetchMembers().then((updatedGuild) => {
+          guild.fetch().then((updatedGuild) => {
             fetchedGuild[guildId] = updatedGuild;
             fetchedGuild[guildId].lastUpdate = new Date();
             updateChannel(updatedGuild, memberCountChannel, type);
-          })
+          });
         } else {
           updateChannel(fetchedGuild[guildId], memberCountChannel, type);
         }
@@ -44,7 +45,8 @@ module.exports = (client) => {
 
 function updateChannel(guild, channel, type) {
   var memberCount = guild.memberCount;
-  var botCount = guild.members.filter(member => member.user.bot).size;
+  console.log(guild);
+  var botCount = guild.members.cache.filter(member => member.user.bot).size;
   
   console.log(`Updating guild: ${guild.name}
 Members: ${memberCount}

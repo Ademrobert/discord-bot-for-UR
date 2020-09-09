@@ -4,6 +4,10 @@
     message.channel.send('Pinging...')
     .then(m => {
       m.edit(`Pong! \`${m.createdTimestamp - message.createdTimestamp}\`ms`)
-    })
+    }).catch(
+      error => {
+        console.log(error)
+      }
+    );
     
 }, ['response'], 'Bot Response Test', '[]';

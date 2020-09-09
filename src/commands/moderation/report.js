@@ -1,5 +1,6 @@
 const { RichEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
+const Discord = require('discord.js');
 
 module.exports = {
     name: "report",
@@ -10,23 +11,39 @@ module.exports = {
         
         if (message.deletable) message.delete();
 
-        let rMember = message.mentions.members.first() || message.guild.members.get(args[0]);
+        let rMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
         if (!rMember)
-            return message.reply("Couldn't find that person?").then(m => m.delete(8000));
+            return message.reply("Couldn't find that person?").then(m => m.delete(8000)).catch(
+                error => {
+                  console.log(error)
+                }
+              );
 
         if (rMember.hasPermission("BAN_MEMBERS") || rMember.user.bot)
-            return message.channel.send("Can't report that member").then(m => m.delete(8000));
+            return message.channel.send("Can't report that member").then(m => m.delete(8000)).catch(
+                error => {
+                  console.log(error)
+                }
+              );
 
         if (!args[1])
-            return message.channel.send("Please provide a reason for the report").then(m => m.delete(8000));
+            return message.channel.send("Please provide a reason for the report").then(m => m.delete(8000)).catch(
+                error => {
+                  console.log(error)
+                }
+              );
         
-        const channel = message.guild.channels.find(c => c.name === "reports")
+        const channel = message.guild.channels.cache.find(c => c.name === "reports")
             
         if (!channel)
-            return message.channel.send("Couldn't find a `#reports` channel").then(m => m.delete(8000));
+            return message.channel.send("Couldn't find a `#reports` channel").then(m => m.delete(8000)).catch(
+                error => {
+                  console.log(error)
+                }
+              );
 
-        const embed = new RichEmbed()
+        const embed = new Discord.MessageEmbed()
             .setColor("#ff0000")
             .setTimestamp()
             .setFooter(message.guild.name, message.guild.iconURL)

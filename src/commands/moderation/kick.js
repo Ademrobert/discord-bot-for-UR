@@ -3,8 +3,7 @@ exports.run = (client, message, args) => {
   if (!message.guild) return;
 
     const user = message.mentions.users.first();
-    let allowedRoles = message.guild.roles.find("name", "Admin", "Mod", "Owner","Manager","Discord Manager","Trainee");
-    if(message.member.hasPermissions("KICK_MEMBERS")){
+    if(message.member.hasPermission("KICK_MEMBERS")){
     if (user) {
 
       const member = message.guild.member(user);
@@ -13,7 +12,7 @@ exports.run = (client, message, args) => {
       if (member) {
 
           member.kick('A user was kicked.').then(() => {
-                    const logs = message.guild.channels.find(channel => channel.name === "bot-logs");
+                    const logs = message.guild.channels.cache.find(channel => channel.name === "bot-logs");
         const reason = args.join(" ").slice(22);
         
     logs.send({embed: {
@@ -49,8 +48,9 @@ exports.run = (client, message, args) => {
           }).catch(err => {
 
             message.reply('I was unable to kick the member.'); 
-return;
             console.error(err);
+
+return;
 
 
           });

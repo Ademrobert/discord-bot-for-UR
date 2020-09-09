@@ -41,11 +41,13 @@ const cmdDirs = [
   './commands/poll/'
 ];
 
+
 cmdDirs.forEach((dir) => {
   fs.readdir(dir, (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
       if (!file.endsWith(".js")) return;
+      console.log(`${dir}${file}`);
       let props = require(`${dir}${file}`);
       let commandName = file.split(".")[0];
       console.log(`Attempting to load ${dir} directory ${commandName}`);
@@ -72,22 +74,23 @@ client.on('message', (message) => {
   let embed;
   switch (cmd) {
     case '!code':
-      embed = new RichEmbed().setTitle('Use Code').setColor(15844367).setDescription('Use Our Creator Code is: "UnstableRengades" in the Fortnite item shop :)');
+      embed = new Discord.MessageEmbed().setTitle('Use Code').setColor(15844367).setDescription('Use Our Creator Code is: "UnstableRengades" in the Fortnite item shop :)');
       break;
     case '?online':
-      embed = new RichEmbed().setTitle('Is bot online?').setColor(15844367).setDescription('Bot is online Bot is online from 9:00 Am (UTC+2) to 23:00 Pm (UTC+2)');
+      embed = new Discord.MessageEmbed().setTitle('Is bot online?').setColor(15844367).setDescription('Bot is online Bot is online from 9:00 Am (UTC+2) to 23:00 Pm (UTC+2)');
       break;
     case '!skepimode':
-      embed = new RichEmbed().setTitle('Skepimode').setColor(15844367).setDescription("Sekpimode is a Legendary pvper in all of minecraft history and he is unstoppable, actually never mind, he's trash");
+      embed = new Discord.MessageEmbed().setTitle('Skepimode').setColor(15844367).setDescription("Sekpimode is a Legendary pvper in all of minecraft history and he is unstoppable, actually never mind, he's trash");
       break;
     case '!whyboost':
-      embed = new RichEmbed()
+      embed = new Discord.MessageEmbed
+      ()
         .setTitle('Why Boost')
         .setColor(15844367)
         .setDescription('If you Boost Unstable Rengades you will get a Boost role and you can send /tts messages you can post images in general you can stream in 1080p in Voice chats and you can Dm somebody from the UR| Developer Team and they will make a command for you only if you have Nitro role we are gonna add more perks for the nitro Boost role New perks coming Soon!');
       break;
     case '!boost':
-      embed = new RichEmbed()
+      embed = new Discord.MessageEmbed()
         .setTitle('Nitro Boosts')
         .setColor(15844367)
         .setDescription(':dash:Remember That If You Have Discord Nitro To Boost Our Server:dash:   :fire:If You Boost Our Server It Will Give A Better Experience:fire:');
@@ -97,21 +100,21 @@ client.on('message', (message) => {
         console.log('message not from guild');
         return;
       }
-      if (!message.member.roles.some(r => r.name === "Admin")) {
+      if (!message.member.roles.cache.some(r => r.name === "Admin")) {
         return message.reply('only Admin role members can set this up');
       }
       const type = args.splice(0, 1)[0];
       const channelName = args.join(' ');
       console.log(`Counter =>`, type, channelName);
       if (type !== 'members' && type !== 'bots' && type !== 'users') {
-        embed = new RichEmbed()
+        embed = new Discord.MessageEmbed()
           .setTitle('Counter')
           .setColor(15844367)
           .setDescription('Only members, users & bots counter allowed at this time.\nTry `!setcounter {type} {channel-name}`');
       } else {
-        const channel = message.guild.channels.find((c) => c.name === args.join(' '));
+        const channel = message.guild.channels.cache.find((c) => c.name === args.join(' '));
         if (!channel) {
-          embed = new RichEmbed()
+          embed = new Discord.MessageEmbed()
             .setTitle('Counter')
             .setColor(15844367)
             .setDescription(`Channel ${channelName} not found.`);
@@ -144,13 +147,17 @@ client.login(config.bot.token)
     countersSet.forEach((c) => {
       counterService.counterInterval(c.guild, c.channel, c.type);
     })
-  })
+  }).catch(
+    error => {
+      console.log(error)
+    }
+  )
 
 // It checks the user entitlement
 
 client.on('message', (message) => {
 if (message.content === '!website') {
-    const embed = new RichEmbed()
+    const embed = new Discord.MessageEmbed()
       .setTitle('Website')
       .setColor(15844367)
       .setDescription("Website Is here clikc on this link --> http://log-in-system.herokuapp.com/");
