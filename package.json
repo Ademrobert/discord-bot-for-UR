@@ -28,7 +28,8 @@
     "superagent": "^5.0.2",
     "urban-dictionary": "^2.2.1",
     "yt-search": "^1.1.2",
-    "ytdl": "^1.3.0"
+    "ytdl": "^1.3.0",
+    "ytdl-core": "^3.2.2"
   },
   "devDependencies": {},
   "scripts": {
