@@ -24,11 +24,11 @@ helpmusic
 roleinfo  
 server  
 userinfo  
-#### Memes  
+#### Memes
 dankmeme  
 historymeme  
 meme  
-#### Moderation  
+#### Moderation
 ban  
 clear  
 helpmod  
@@ -39,22 +39,22 @@ tempban
 tempmute  
 warnings  
 warn  
-#### Music  
+#### Music
 play  
 playlist  
 playqueue  
 skip  
 stop  
 ytsearch  
-#### Polls  
+#### Polls
 poll  
-#### Random  
+#### Random
 coinflip  
 helpfun  
 hug  
 kiss  
 ping  
 slap  
-#### Special  
+#### Special
 code  
-:
+
