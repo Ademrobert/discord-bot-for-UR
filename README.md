@@ -9,52 +9,51 @@ Add to your server etc.....
 ## Usage
 ### Commands
 #### Animals
-cat  
-catfact  
-dog  
-dogfact  
-lizard  
-panda  
-parrot  
+`!cat` Return a picture of a cat  
+`!catfact` Return an interesting fact about a cat  
+`!dog` Return a picture of a dog  
+`!dogfact` Return an interesting fact about a dog  
+`!lizard` Return a picture of a lizzard  
+`!panda` Return a picture of a panda  
+`!parrot` Return a picture of a parrot  
 #### Info
-author  
-help  
-helpinfo  
-helpmusic  
-roleinfo  
-server  
-userinfo  
+`!author` Information about the author of this mot  
+`!help` Lists available command categories 
+`!helpinfo` Lists *info* commands  
+`!helpmusic`  Lists *music* commands
+`!roleinfo` Lists *role* commands  
+`!server` Returns information about the server  
+`!userinfo <@username>` Returns information about the user  
 #### Memes
-dankmeme  
-historymeme  
-meme  
+`!dankmeme`  
+`!historymeme`  
+`!meme`  
 #### Moderation
-ban  
-clear  
-helpmod  
-kick  
-mute  
-report  
-tempban  
-tempmute  
-warnings  
-warn  
+`!ban`  a user
+`!clear`  a user's messages
+`!helpmod` Lists *moderation* commands  
+`!kick` a user  
+`!mute` a user  
+`!report` a user  
+`!tempban` a user  
+`!tempmute` a user  
+`!warnings` List warnings a user has received  
+`!warn` a user  
 #### Music
-play  
-playlist  
-playqueue  
-skip  
-stop  
-ytsearch  
+`!play` a youtube link  
+`!playlist` a youtube playlist link  
+`!playqueue` List what songs are queued  
+`!skip` a song  
+`!stop` playing music  
+`!ytsearch` Search youtube for a song/video  
 #### Polls
-poll  
+`!poll` Create a poll for users to vote on by reacting  
 #### Random
-coinflip  
-helpfun  
-hug  
-kiss  
-ping  
-slap  
+`!coinflip` Flip a coin  
+`!helpfun` List *fun* commands  
+`!hug`  
+`!kiss`  
+`!ping` Pong!  
+`!slap`  
 #### Special
-code  
-
+`!code`
