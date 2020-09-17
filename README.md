@@ -4,8 +4,9 @@ The idea is that you only need one bot to manage in order to simplify things. Yo
 5 different bots. Less is more.
 
 ## Adding to your server
-Add to your server etc.....
-
+To add this discorod bot to your sever, simply go to this website:  
+[http://log-in-system.herokuapp.com/](http://log-in-system.herokuapp.com/)  
+And click **register** and sign in with your discord account.
 ## Usage
 ### Commands
 #### Animals
