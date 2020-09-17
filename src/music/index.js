@@ -83,6 +83,7 @@ async function execute(songCode, client, message, serverQueue, song) {
         return;
       }
     }
+    console.log("SERVER IS BEING LOGGED")
   }
 
   if (!serverQueue) {
