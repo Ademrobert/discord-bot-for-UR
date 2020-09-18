@@ -221,6 +221,7 @@ async function search(song, client, message, serverQueue) {
   //console.log(videos);
   const choices = [];
   let text = 'Please pick a song to play:\n';
+  console.log(videos);
   videos.slice(0, 5).forEach((v, idx) => {
     console.log("Search is executing...");
     const emoji = getReplyEmoji(idx + 1, client);
