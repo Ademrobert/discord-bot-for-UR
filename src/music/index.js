@@ -78,6 +78,7 @@ async function execute(songCode, client, message, serverQueue, song) {
         url: songInfo.video_url
       };
     } catch (err) {
+      console.log(err);
       if (err.toString().indexOf('No video id found') > -1) {
         search(songCode, client, message, serverQueue);
         return;
