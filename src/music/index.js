@@ -220,6 +220,8 @@ async function search(song, client, message, serverQueue) {
   const videos = r.videos;
   //console.log(videos);
   const choices = [];
+  console.log(r);
+  console.log(yts);
   let text = 'Please pick a song to play:\n';
   console.log(videos);
   videos.slice(0, 5).forEach((v, idx) => {
