@@ -99,7 +99,7 @@ client.on('message', (message) => {
       embed = new Discord.MessageEmbed()
         .setTitle('Bruh')
         .setColor(15844367)
-        .setDescription('It is what it is');
+        .setDescription('"It is what it is" Eric 2020');
       break;
     case '!setcounter':
       if (!message.guild) {
