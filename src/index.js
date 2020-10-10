@@ -84,7 +84,7 @@ client.on('message', (message) => {
       break;
     case '!whyboost':
       embed = new Discord.MessageEmbed
-      ()
+        ()
         .setTitle('Why Boost')
         .setColor(15844367)
         .setDescription('If you Boost Unstable Rengades you will get a Boost role and you can send /tts messages you can post images in general you can stream in 1080p in Voice chats and you can Dm somebody from the UR| Developer Team and they will make a command for you only if you have Nitro role we are gonna add more perks for the nitro Boost role New perks coming Soon!');
@@ -94,6 +94,12 @@ client.on('message', (message) => {
         .setTitle('Nitro Boosts')
         .setColor(15844367)
         .setDescription(':dash:Remember That If You Have Discord Nitro To Boost Our Server:dash:   :fire:If You Boost Our Server It Will Give A Better Experience:fire:');
+      break;
+    case '!bruh':
+      embed = new Discord.MessageEmbed()
+        .setTitle('Bruh')
+        .setColor(15844367)
+        .setDescription('It is what it is');
       break;
     case '!setcounter':
       if (!message.guild) {
@@ -156,7 +162,7 @@ client.login(config.bot.token)
 // It checks the user entitlement
 
 client.on('message', (message) => {
-if (message.content === '!website') {
+  if (message.content === '!website') {
     const embed = new Discord.MessageEmbed()
       .setTitle('Website')
       .setColor(15844367)
@@ -228,6 +234,6 @@ client.on('message', (message) => {
 
 
 client.on("message", async message => {
-  
+
 });
 
