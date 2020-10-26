@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
   let role = args.join(` `)
   if (!role) return message.reply("Specify a role!");
-  let gRole = message.guild.roles.find(`name`, "UR| Managment", "UR| CEO", "UR| Sir Mod", "UR| Chat Mod", "UR| Developer Team", "Admin", "Bots", "bot", "Bot", "all perks", "developers", "Developers", "Streamer");
+  let gRole = message.guild.roles.cache.find(`name`, "UR| Managment", "UR| CEO", "UR| Sir Mod", "UR| Chat Mod", "UR| Developer Team", "Admin", "Bots", "bot", "Bot", "all perks", "developers", "Developers", "Streamer");
   if (!gRole) return message.reply("Couldn't find that role.");
 
   const status = {
