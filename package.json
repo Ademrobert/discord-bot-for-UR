@@ -35,6 +35,6 @@
   "scripts": {
     "start": "node src/index.js"
   },
-  "author": "YourDailyLlama",
-  "license": "ISC"
+  "author": "Adem",
+  "license": "None"
 }
