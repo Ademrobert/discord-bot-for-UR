@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
     true: "Yes"
   }
 
-  let roleemebed = new Discord.RichEmbed()
+  let roleemebed = new Discord.MessageEmbed()
     .setColor("#000000")
     .addField("ID", gRole.id, inline)
     .addField("Name", gRole.name, inline)
