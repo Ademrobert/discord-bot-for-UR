@@ -22,7 +22,7 @@ if (member.nickname === null) {
   member.nickname = "No nickname";
 };
 
-          let embed = new Discord.RichEmbed()
+          let embed = new Discord.MessageEmbed()
               .setAuthor(member.user.username)
               .setThumbnail((target.displayAvatarURL))
               .setColor("#000000")
