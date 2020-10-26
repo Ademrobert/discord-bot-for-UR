@@ -32,7 +32,7 @@ if (member.nickname === null) {
               .addField("Bot", `${bot}`,inline, true)
               .addField("Status", `${status[member.user.presence.status]}`, inline, true)
               .addField("Playing", `${member.user.presence.game ? ` ${member.user.presence.game.name}` : "Not playing"}`,inline, true)
-              .addField("Roles", `${member.roles.filter(r => r.id !== message.guild.id).map(roles => `\`${roles.name}\``).join(" **|** ") || "No Roles"}`, true)
+              .addField("Roles", `${member.roles.cache.filter(r => r.id !== message.guild.id).map(roles => `\`${roles.name}\``).join(" **|** ") || "No Roles"}`, true)
               .addField("Joined Discord At", member.user.createdAt)
               .setFooter(`Information about ${member.user.username}`)
               .setTimestamp()
