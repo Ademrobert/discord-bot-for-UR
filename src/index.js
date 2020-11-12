@@ -217,13 +217,13 @@ client.on('message', (message) => {
   if (parts[0] == '!role') {
 
     if (parts[1] == 'member') {
-      message.member.addRole(MEMBER_ROLE);
+      message.member.add(MEMBER_ROLE);
     }
     else if (parts[1] == 'developers') {
-      message.member.addRole(DEVELOPERS_ROLE);
+      message.member.add(DEVELOPERS_ROLE);
     }
     else if (parts[1] == 'community') {
-      message.member.addRole(COMMUNITY_ROLE);
+      message.member.add(COMMUNITY_ROLE);
     } else {
       message.channel.send('Role Not Found?')
     }
@@ -236,4 +236,3 @@ client.on('message', (message) => {
 client.on("message", async message => {
 
 });
-
