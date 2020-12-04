@@ -263,7 +263,7 @@ client.on("message", async message => {
     if(command === "rank" || command === "!r") {
         const user = await Levels.fetch(message.author.id, message.guild.id);
         message.channel.send(`You are currently level **${user.level}**!`),
-        message.channel.send(`You are currently level **${user.xp}**!`)
+        message.channel.send(`Your Current Xp levels is: **${user.xp}**!`)
     }
 
     //Leaderboard
