@@ -10,6 +10,8 @@ const db = database.getConnection({
   filename: config.database.file.name,
 });
 const fetch = require('node-fetch');
+const Levels = require('discord-xp')
+const prefix = '!';
 
 db.defaults({ counters: [] })
   .write();
@@ -236,8 +238,6 @@ client.on('message', (message) => {
 
 
 
-const Levels = require('discord-xp')
-
 Levels.setURL("mongodb+srv://Discord-Bot:7vCk1otiG6LksJbz@cluster0.ha5xy.mongodb.net/discord-bot-db?retryWrites=true&w=majority")
 
 
@@ -248,8 +248,6 @@ client.on("ready", bot => {
 client.on("message", async message => {
     if (!message.guild) return;
     if (message.author.bot) return;
-
-    const prefix = '!';
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
