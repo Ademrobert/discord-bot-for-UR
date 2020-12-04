@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-Discord.constants.DefualtOptions.ws.properties.$browser = "Discord Android";
 const { RichEmbed, Attachment } = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config");
