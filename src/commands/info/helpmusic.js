@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-    console.log(`${message.author.tag} used the yeet helpinfo command.`)
+    console.log(`${message.author.tag} used the helpinfo command.`)
     message.channel.send({
       embed: {
         color: 000000,

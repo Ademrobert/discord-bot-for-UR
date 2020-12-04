@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  console.log(`${message.author.tag} used the yeet roleinfo command.`)
+  console.log(`${message.author.tag} used the roleinfo command.`)
   let inline = true
 
   let role = args.join(` `)
