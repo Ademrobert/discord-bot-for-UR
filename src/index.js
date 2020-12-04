@@ -263,7 +263,7 @@ client.on("message", async message => {
     if(command === "rank" || command === "!r") {
         const user = await Levels.fetch(message.author.id, message.guild.id);
         message.channel.send(`You are currently level **${user.level}**!`),
-        message.channel.send(`Your Current Xp levels is: **${user.xp}**!`)
+        message.channel.send(`Your Current Xp levels are: **${user.xp}**!`)
     }
 
     //Leaderboard
@@ -273,7 +273,7 @@ client.on("message", async message => {
 
         const leaderboard = Levels.computeLeaderboard(client, rawLeaderboard);
 
-        const lb = leaderboard.Map(e => `${e.position}. ${e.username}#${e.discriminator}\nLevel: ${e.level}\nXP: ${e.xp.toLocaleString()}`);
+        const lb = leaderboard.map(e => `${e.position}. ${e.username}#${e.discriminator}\nLevel: ${e.level}\nXP: ${e.xp.toLocaleString()}`);
 
         message.channel.send(`${lb.join("\n\n")}}`)
     }

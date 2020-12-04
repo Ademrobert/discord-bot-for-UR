@@ -30,6 +30,10 @@ exports.run = (client, message, args) => {
         value: "Shows the information for the mentioned role."
       },
       {
+        name: "_**!Rank Or !r**_",
+        value: "Shows the Your Rank and your Xp levels"
+      },
+      {
         name: "Suggestions",
         value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
       }
