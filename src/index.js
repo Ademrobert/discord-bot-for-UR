@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+Discord.constants.DefualtOptions.ws.properties.$browser = "Discord Android";
 const { RichEmbed, Attachment } = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config");
@@ -12,8 +13,6 @@ const db = database.getConnection({
 const fetch = require('node-fetch');
 const Levels = require('discord-xp');
 const prefix = '!';
-const canvacord = require("canvacord");
-const img = "https://cdn.discordapp.com/embed/avatars/0.png";
 
 db.defaults({ counters: [] })
   .write();
@@ -260,23 +259,6 @@ client.on("message", async message => {
         const user = await Levels.fetch(message.author.id, message.guild.id);
         message.channel.send(`You leveled up to ${user.level}! Keep it going!`);
     }
-
-    //Rank Card
-
-    const rank = new canvacord.Rank()
-    .setAvatar(img)
-    .setCurrentXP(userData.xp)
-    .setRequiredXP(userData.requiredXP)
-    .setStatus("dnd")
-    .setProgressBar("#FFFFFF", "COLOR")
-    .setUsername("Kalle")
-    .setDiscriminator("0007");
-
-rank.build()
-    .then(data => {
-        const attachment = new Discord.MessageAttachment(data, "RankCard.png");
-        message.channel.send(attachment);
-    });
 
     //Rank
     if(command === "rank" || command === "!r") {
