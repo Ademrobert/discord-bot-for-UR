@@ -235,10 +235,10 @@ client.on('message', (message) => {
 // Leveling system
 
 
-const client = new Discord.Client();
+
 const Levels = require('discord-xp')
 
-Levels.setURL("MONGODB_URL")
+Levels.setURL("mongodb+srv://Discord-Bot:7vCk1otiG6LksJbz@cluster0.ha5xy.mongodb.net/discord-bot-db?retryWrites=true&w=majority")
 
 
 client.on("ready", bot => {
@@ -262,7 +262,7 @@ client.on("message", async message => {
     }
 
     //Rank
-    if(command === "rank") {
+    if(command === "rank" || command === "!r") {
         const user = await Levels.fetch(message.author.id, message.guild.id);
         message.channel.send(`You are currently level **${user.level}**!`)
     }
