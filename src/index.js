@@ -249,7 +249,7 @@ client.on("message", async message => {
     if (!message.guild) return;
     if (message.author.bot) return;
 
-    //const prefix = '?';
+    const prefix = '!';
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
