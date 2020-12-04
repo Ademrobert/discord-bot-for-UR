@@ -245,7 +245,7 @@ client.on("ready", bot => {
     console.log('Bot is Online!')
 })
 
-bot.on("message", async message => {
+client.on("message", async message => {
     if (!message.guild) return;
     if (message.author.bot) return;
 
