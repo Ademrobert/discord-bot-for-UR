@@ -34,6 +34,10 @@ exports.run = (client, message, args) => {
         value: "Shows the Your Rank and your Xp levels"
       },
       {
+        name: "_**!leaderboard**_",
+        value: "Shows the Highest ranking people"
+      },
+      {
         name: "Suggestions",
         value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
       }

@@ -10,7 +10,7 @@ const db = database.getConnection({
   filename: config.database.file.name,
 });
 const fetch = require('node-fetch');
-const Levels = require('discord-xp')
+const Levels = require('discord-xp');
 const prefix = '!';
 
 db.defaults({ counters: [] })
@@ -75,8 +75,8 @@ client.on('message', (message) => {
   const cmd = args.splice(0, 1).join('');
   let embed;
   switch (cmd) {
-    case '!code':
-      embed = new Discord.MessageEmbed().setTitle('Use Code').setColor(15844367).setDescription('Use Our Creator Code is: "UnstableRengades" in the Fortnite item shop :)');
+    case '!NUKE':
+      embed = new Discord.MessageEmbed().setTitle('NUKE').setColor(15844367).setDescription('NUKED!');
       break;
     case '?online':
       embed = new Discord.MessageEmbed().setTitle('Is bot online?').setColor(15844367).setDescription('Bot is online Bot is online from 9:00 Am (UTC+2) to 23:00 Pm (UTC+2)');
@@ -219,15 +219,15 @@ client.on('message', (message) => {
   if (parts[0] == '!role') {
 
     if (parts[1] == 'member') {
-      message.member.add(MEMBER_ROLE);
+      message.member.roles.add(MEMBER_ROLE);
     }
     else if (parts[1] == 'developers') {
-      message.member.add(DEVELOPERS_ROLE);
+      message.member.roles.add(DEVELOPERS_ROLE);
     }
     else if (parts[1] == 'community') {
-      message.member.add(COMMUNITY_ROLE);
+      message.member.roles.add(COMMUNITY_ROLE);
     } else {
-      message.channel.send('Role Not Found?')
+      message.channel.roles.send('Role Not Found?')
     }
     message.channel.send('Done!')
   }
@@ -268,7 +268,7 @@ client.on("message", async message => {
 
     //Leaderboard
     if(command === "leaderboard" || command === "lb") {
-        const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 5);
+        const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10);
         if (rawLeaderboard.length < 1) return reply("Nobody's in leaderboard yet.");
 
         const leaderboard = await Levels.computeLeaderboard(client, rawLeaderboard);
