@@ -267,7 +267,7 @@ client.on("message", async message => {
     }
 
     //Leaderboard
-    if(command === "leaderboard" || command === "lb") {
+    if(command === "leaderboard") {
         const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 5);
         if (rawLeaderboard.length < 1) return reply("Nobody's in leaderboard yet.");
 
