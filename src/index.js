@@ -234,8 +234,8 @@ client.on('message', (message) => {
 
 // Leveling system
 
-const Discord = require('discord.js')
-const bot = new Discord.Client();
+
+const client = new Discord.Client();
 const Levels = require('discord-xp')
 
 Levels.setURL("MONGODB_URL")
