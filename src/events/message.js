@@ -16,7 +16,7 @@ module.exports = (client, message) => {
      message.member.send("Please dont say bad words :). we are good people. This time i filtered your message, its just a warn.");
     return;
   }
-  
+
   if (message.content.indexOf(client.config.prefix) !== 0) return;
 
 
@@ -26,9 +26,11 @@ module.exports = (client, message) => {
 
   const cmd = client.commands.get(command);
 
-  
+
   if (!cmd) return;
 
-  
-  cmd.run(client, message, args);
+
+  module.exports.run = async (bot, message, args) => {
+
+};
 };
