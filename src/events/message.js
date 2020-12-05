@@ -30,7 +30,5 @@ module.exports = (client, message) => {
   if (!cmd) return;
 
 
-  module.exports.run = async (bot, message, args) => {
-
-};
+  cmd.run(client, message, args);
 };
