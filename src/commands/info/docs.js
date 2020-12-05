@@ -1,4 +1,4 @@
-const Commando = require('discord.js.commando');
+const Commando = require('discord.js-commando');
 const axios = require('axios');
 
 module.exports = class DocsCommand extends Commando.Command {
