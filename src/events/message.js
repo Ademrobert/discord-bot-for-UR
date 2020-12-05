@@ -29,6 +29,6 @@ module.exports = (client, message) => {
 
   if (!cmd) return;
 
-
+ console.log(run)
   cmd.run(client, message, args);
 };
