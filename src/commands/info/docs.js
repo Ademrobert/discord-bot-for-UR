@@ -11,7 +11,7 @@ module.exports = class DocsCommand extends Commando.Command {
     })
   }
 
-  run = async (message, args) => {
+  async run (message, args) {
     const uri = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(
       args
     )}`
