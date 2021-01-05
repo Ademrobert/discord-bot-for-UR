@@ -25,6 +25,7 @@ And click **register** and sign in with your discord account.
 `!roleinfo` Lists *role* commands  
 `!server` Returns information about the server  
 `!userinfo <@username>` Returns information about the user  
+`!rank` shows you what level you are
 #### Memes
 `!dankmeme`  
 `!historymeme`  
