@@ -49,6 +49,10 @@ exports.run = (client, message, args) => {
             value: "Creates a memeber count to activate it creat a Category and then creat a private Vc and after do the command whit the Vc name and it turns that Vc in to a member Counter. For example '!setcounter {members or bots} {channel-name}'"
           },
           {
+            name: "_**!Slowmode (The amount of Seconds) (Reason)**_",
+            value: "Changes the Slowmode in the channel"
+          },
+          {
             name: "Suggestions",
             value: "Have any suggestion? Click [here](https://discord.gg/SvNrenM)"
           }
