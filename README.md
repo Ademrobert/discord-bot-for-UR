@@ -41,6 +41,7 @@ And click **register** and sign in with your discord account.
 `!tempmute` a user  
 `!warnings` List warnings a user has received  
 `!warn` a user  
+`!Slowmode` changes the typing speed in a channel  
 #### Music
 `!play` a youtube link  
 `!playlist` a youtube playlist link  
